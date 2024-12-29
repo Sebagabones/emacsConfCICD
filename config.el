@@ -372,11 +372,11 @@ function that sets `deactivate-mark' to t."
   ;; Should have wezterm or alacritty installed, more terminal application is supporting...
 ;; Issues and pull requests are welcome
   (setq ee-terminal-command "alacritty")
-  (global-set-key (kbd "C-c C-a") 'ee-find)
+  (global-set-key (kbd "C-c C-o") 'ee-find)
   (global-set-key (kbd "C-c C-l") 'ee-lazygit)
   (global-set-key (kbd "C-c C-s") 'ee-line)
   (global-set-key (kbd "C-c C-d") 'ee-delta)
-  (global-set-key (kbd "C-c C-k") 'ee-rg)
+  (global-set-key (kbd "C-c C-a") 'ee-rg)
   )
 
 
