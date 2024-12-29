@@ -387,3 +387,4 @@ function that sets `deactivate-mark' to t."
                        (lambda ()
                          (message "Garbage Collector has run for %.06fsec"
                                   (k-time (garbage-collect))))))
+cap test
