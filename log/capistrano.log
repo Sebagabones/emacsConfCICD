@@ -6462,3 +6462,61 @@ options:
   INFO [2d96849d] Running /usr/bin/env echo "Branch main (at e76c7d0f53d72e35aff1ed3a881bb3c8af5b8090) deployed as release 20241229190415 by bones" >> /var/www/mahoosively.gay/public_html/emacsConfig/revisions.log as bones@boneswebhome.lab.mahoosively.gay
  DEBUG [2d96849d] Command: cd /var/www/mahoosively.gay/public_html/emacsConfig/releases && /usr/bin/env echo "Branch main (at e76c7d0f53d72e35aff1ed3a881bb3c8af5b8090) deployed as release 20241229190415 by bones" >> /var/www/mahoosively.gay/public_html/emacsConfig/revisions.log
   INFO [2d96849d] Finished in 0.053 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:07:51 +0800 cap Prod gitPush
+  INFO ---------------------------------------------------------------------------
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:08:13 +0800 cap Prod gitpush
+  INFO ---------------------------------------------------------------------------
+  INFO /var/www/mahoosively.gay/public_html/emacsConfig/current
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:10:57 +0800 cap Prod gitpush
+  INFO ---------------------------------------------------------------------------
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:11:12 +0800 cap Prod gitpush
+  INFO ---------------------------------------------------------------------------
+ DEBUG [8b4bd158] Running /usr/bin/env ls -xt /var/www/mahoosively.gay/public_html/emacsConfig/releases as bones@localhost
+ DEBUG [8b4bd158] Command: /usr/bin/env ls -xt /var/www/mahoosively.gay/public_html/emacsConfig/releases
+ DEBUG [8b4bd158] 	ls: cannot access '/var/www/mahoosively.gay/public_html/emacsConfig/releases': No such file or directory
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:12:11 +0800 cap Prod gitpush
+  INFO ---------------------------------------------------------------------------
+  INFO /var/www/mahoosively.gay/public_html/emacsConfig
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:12:20 +0800 cap Prod gitpush
+  INFO ---------------------------------------------------------------------------
+  INFO /var/www/mahoosively.gay/public_html/emacsConfig/releases
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:13:49 +0800 cap Prod gitpush
+  INFO ---------------------------------------------------------------------------
+ DEBUG [e248eb1c] Running /usr/bin/env date as bones@localhost
+ DEBUG [e248eb1c] Command: /usr/bin/env date
+ DEBUG [e248eb1c] 	Mon 30 Dec 2024 03:13:49 AWST
+ DEBUG [e248eb1c] Finished in 0.002 seconds with exit status 0 (successful).
+  INFO Mon 30 Dec 2024 03:13:49 AWST
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:15:36 +0800 cap Prod gitpush
+  INFO ---------------------------------------------------------------------------
+ DEBUG [ff3b7ea5] Running /usr/bin/env date as bones@localhost
+ DEBUG [ff3b7ea5] Command: /usr/bin/env date
+ DEBUG [ff3b7ea5] 	Mon 30 Dec 2024 03:15:36 AWST
+ DEBUG [ff3b7ea5] Finished in 0.002 seconds with exit status 0 (successful).
+  INFO [18f1f83d] Running /usr/bin/env git add . as bones@localhost
+ DEBUG [18f1f83d] Command: /usr/bin/env git add .
+  INFO [18f1f83d] Finished in 0.013 seconds with exit status 0 (successful).
+  INFO [67ac46fa] Running /usr/bin/env git commit -m Mon 30 Dec 2024 03:15:36 AWST as bones@localhost
+ DEBUG [67ac46fa] Command: /usr/bin/env git commit -m Mon 30 Dec 2024 03:15:36 AWST
+ DEBUG [67ac46fa] 	error: pathspec '30' did not match any file(s) known to git
+ DEBUG [67ac46fa] 	error: pathspec 'Dec' did not match any file(s) known to git
+ DEBUG [67ac46fa] 	error: pathspec '2024' did not match any file(s) known to git
+ DEBUG [67ac46fa] 	error: pathspec '03:15:36' did not match any file(s) known to git
+ DEBUG [67ac46fa] 	error: pathspec 'AWST' did not match any file(s) known to git
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:15:53 +0800 cap Prod gitpush
+  INFO ---------------------------------------------------------------------------
+ DEBUG [0c2f01f6] Running /usr/bin/env date as bones@localhost
+ DEBUG [0c2f01f6] Command: /usr/bin/env date
+ DEBUG [0c2f01f6] 	Mon 30 Dec 2024 03:15:53 AWST
+ DEBUG [0c2f01f6] Finished in 0.002 seconds with exit status 0 (successful).
+  INFO [3efa0026] Running /usr/bin/env git add . as bones@localhost
+ DEBUG [3efa0026] Command: /usr/bin/env git add .
