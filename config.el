@@ -32,8 +32,10 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+
 (setq doom-theme 'doom-tokyo-night)
 
+;; (setq doom-theme 'catppuccin)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
@@ -100,8 +102,7 @@
 
 ;; The Custom interface is also supported for tuning the variable above.
 (setq kill-whole-line t)
-(setq user-full-name "Seb Gazey"
-      user-mail-address "bones@ucc.asn.au")
+
 (setq auto-save-default t
       make-backup-files t)
 (setq confirm-kill-emacs nil)
@@ -363,7 +364,22 @@ function that sets `deactivate-mark' to t."
      (float-time (time-since time))))
 
 ;; config.el
-  (require 'tera-mode)
+(require 'tera-mode)
+
+(use-package! eee
+  :config
+
+  ;; Should have wezterm or alacritty installed, more terminal application is supporting...
+;; Issues and pull requests are welcome
+  (setq ee-terminal-command "alacritty")
+  (global-set-key (kbd "C-c C-a") 'ee-find)
+  (global-set-key (kbd "C-c C-l") 'ee-lazygit)
+  (global-set-key (kbd "C-c C-s") 'ee-line)
+  (global-set-key (kbd "C-c C-d") 'ee-delta)
+  (global-set-key (kbd "C-c C-k") 'ee-rg)
+  )
+
+
 
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer

@@ -21,9 +21,24 @@
 (package! clipetty)
 (package! comment-dwim-2)
 (package! lsp-pyright)
+(package! catppuccin-theme)
   ;; package.el
   (package! tera-mode
     :recipe (:host github :repo "svavs/tera-mode"))
+
+(package! eee
+  :recipe (:host github :repo "Sebagabones/eee.el"
+           :files (:defaults "*.el" "*.sh")))
+
+
+;; (package! eee
+;;   :recipe (:host github :repo "eval-exec/eee.el"
+;;            :files (:defaults "*.el" "*.sh")))
+;; (package! eee
+;;   :recipe (:local-repo "/home/bones/Storage/MyProjects/eee.el/"))
+
+
+
 
 ;; (package! lsp-ui)
 ;; To install a package directly from a remote git repo, you must specify a
