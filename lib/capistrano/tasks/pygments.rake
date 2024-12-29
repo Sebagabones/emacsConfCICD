@@ -16,7 +16,7 @@ namespace :pygments do
 
       end
     end
-    invoke(:cpPressri)
+    # invoke(:cpPressri)
   end
 end
 #!/usr/bin/env ruby
