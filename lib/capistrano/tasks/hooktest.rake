@@ -3,7 +3,8 @@
 before 'deploy:starting', :uptime
 
 after 'deploy:updated', 'pygments:pygmentsSetup'
-after 'deploy:cleanup', :cpPressri
+# after 'deploy:symlink:release', :cpPressri
+# after # 'deploy:cleanup',
 after 'deploy:finished', :gitpush
 
 #   end

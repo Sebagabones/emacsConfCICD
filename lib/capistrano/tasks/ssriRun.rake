@@ -2,7 +2,7 @@
 
 mainDirLoc = "/var/www/mahoosively.gay/public_html/mahoosivelygay"
 desc "Runs ssri"
-task :cpPressri do
+task :ssriRun do
   on roles(:all) do |host|
     info "Running SSRI on #{host}"
     staging = "#{mainDirLoc}/staging"
