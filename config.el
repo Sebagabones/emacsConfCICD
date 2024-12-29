@@ -386,4 +386,4 @@ function that sets `deactivate-mark' to t."
   (run-with-idle-timer 15 t
                        (lambda ()
                          (message "Garbage Collector has run for %.06fsec"
-                                  (k-time (garbage-collect!!!))))))
+                                  (k-time (garbage-collect))))))
