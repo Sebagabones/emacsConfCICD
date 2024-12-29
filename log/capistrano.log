@@ -8972,3 +8972,29 @@ options:
  DEBUG [8307edb2] Finished in 0.002 seconds with exit status 0 (successful).
   INFO [a2ade87c] Running /usr/bin/env git add . as bones@localhost
  DEBUG [a2ade87c] Command: /usr/bin/env git add .
+  INFO [a2ade87c] Finished in 0.018 seconds with exit status 0 (successful).
+  INFO [6869576d] Running /usr/bin/env git commit -m ' Mon 30 Dec 2024 03:41:28 AWST ' as bones@localhost
+ DEBUG [6869576d] Command: /usr/bin/env git commit -m ' Mon 30 Dec 2024 03:41:28 AWST '
+ DEBUG [6869576d] 	[main 88f5a9e]  Mon 30 Dec 2024 03:41:28 AWST
+ DEBUG [6869576d] 	 2 files changed, 169 insertions(+), 1 deletion(-)
+  INFO [6869576d] Finished in 0.018 seconds with exit status 0 (successful).
+  INFO [fd7e7d40] Running /usr/bin/env git push as bones@localhost
+ DEBUG [fd7e7d40] Command: /usr/bin/env git push
+ DEBUG [fd7e7d40] 	To github.com:Sebagabones/emacsConfCICD.git
+ DEBUG [fd7e7d40] 	   33ec032..88f5a9e  main -> main
+  INFO [fd7e7d40] Finished in 3.024 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:42:46 +0800 cap Prod deploy
+  INFO ---------------------------------------------------------------------------
+  INFO Running task on boneswebhome.lab.mahoosively.gay, deploying at /var/www/mahoosively.gay/public_html/emacsConfig
+ DEBUG [5bfbc885] Running /usr/bin/env uptime as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [5bfbc885] Command: /usr/bin/env uptime
+ DEBUG [5bfbc885] 	 03:42:47 up 16 days,  7:05,  1 user,  load average: 0.00, 0.00, 0.00
+ DEBUG [5bfbc885] Finished in 0.367 seconds with exit status 0 (successful).
+  INFO Host boneswebhome.lab.mahoosively.gay (app, db, web):	03:42:47 up 16 days,  7:05,  1 user,  load average: 0.00, 0.00, 0.00
+ DEBUG [11c9987d] Running /usr/bin/env date as bones@localhost
+ DEBUG [11c9987d] Command: /usr/bin/env date
+ DEBUG [11c9987d] 	Mon 30 Dec 2024 03:42:47 AWST
+ DEBUG [11c9987d] Finished in 0.002 seconds with exit status 0 (successful).
+  INFO [ee5232ea] Running /usr/bin/env git add . as bones@localhost
+ DEBUG [ee5232ea] Command: /usr/bin/env git add .
