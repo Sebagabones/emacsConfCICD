@@ -6520,3 +6520,37 @@ options:
  DEBUG [0c2f01f6] Finished in 0.002 seconds with exit status 0 (successful).
   INFO [3efa0026] Running /usr/bin/env git add . as bones@localhost
  DEBUG [3efa0026] Command: /usr/bin/env git add .
+  INFO [3efa0026] Finished in 0.014 seconds with exit status 0 (successful).
+  INFO [f2f86747] Running /usr/bin/env git commit -m "#{timeOfPushCommitMessage}" as bones@localhost
+ DEBUG [f2f86747] Command: /usr/bin/env git commit -m "#{timeOfPushCommitMessage}"
+ DEBUG [f2f86747] 	[main f1f9a2f] #{timeOfPushCommitMessage}
+ DEBUG [f2f86747] 	 2 files changed, 70 insertions(+)
+ DEBUG [f2f86747] 	 create mode 100644 lib/capistrano/tasks/gitCommit.rake
+  INFO [f2f86747] Finished in 0.015 seconds with exit status 0 (successful).
+  INFO [18ecd8d1] Running /usr/bin/env git push as bones@localhost
+ DEBUG [18ecd8d1] Command: /usr/bin/env git push
+ DEBUG [18ecd8d1] 	To github.com:Sebagabones/emacsConfCICD.git
+ DEBUG [18ecd8d1] 	   20cf6a5..f1f9a2f  main -> main
+  INFO [18ecd8d1] Finished in 2.904 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:16:22 +0800 cap Prod gitpush
+  INFO ---------------------------------------------------------------------------
+ DEBUG [a8ddd55f] Running /usr/bin/env date as bones@localhost
+ DEBUG [a8ddd55f] Command: /usr/bin/env date
+ DEBUG [a8ddd55f] 	Mon 30 Dec 2024 03:16:22 AWST
+ DEBUG [a8ddd55f] Finished in 0.001 seconds with exit status 0 (successful).
+  INFO [4e95148f] Running /usr/bin/env git add . as bones@localhost
+ DEBUG [4e95148f] Command: /usr/bin/env git add .
+  INFO [4e95148f] Finished in 0.014 seconds with exit status 0 (successful).
+  INFO [e2c0dfdb] Running /usr/bin/env git commit -m Mon 30 Dec 2024 03:16:22 AWST as bones@localhost
+ DEBUG [e2c0dfdb] Command: /usr/bin/env git commit -m Mon 30 Dec 2024 03:16:22 AWST
+ DEBUG [e2c0dfdb] 	error: pathspec '30' did not match any file(s) known to git
+ DEBUG [e2c0dfdb] 	error: pathspec 'Dec' did not match any file(s) known to git
+ DEBUG [e2c0dfdb] 	error: pathspec '2024' did not match any file(s) known to git
+ DEBUG [e2c0dfdb] 	error: pathspec '03:16:22' did not match any file(s) known to git
+ DEBUG [e2c0dfdb] 	error: pathspec 'AWST' did not match any file(s) known to git
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:16:44 +0800 cap Prod gitpush
+  INFO ---------------------------------------------------------------------------
+  INFO [00da4313] Running /usr/bin/env git add . as bones@localhost
+ DEBUG [00da4313] Command: /usr/bin/env git add .
