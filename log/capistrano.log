@@ -8468,3 +8468,171 @@ options:
  DEBUG [88e1bec2] Finished in 0.001 seconds with exit status 0 (successful).
   INFO [49ec291e] Running /usr/bin/env git add . as bones@localhost
  DEBUG [49ec291e] Command: /usr/bin/env git add .
+  INFO [49ec291e] Finished in 0.016 seconds with exit status 0 (successful).
+  INFO [4eea9c9e] Running /usr/bin/env git commit -m ' Mon 30 Dec 2024 03:39:29 AWST ' as bones@localhost
+ DEBUG [4eea9c9e] Command: /usr/bin/env git commit -m ' Mon 30 Dec 2024 03:39:29 AWST '
+ DEBUG [4eea9c9e] 	[main 232f238]  Mon 30 Dec 2024 03:39:29 AWST
+ DEBUG [4eea9c9e] 	 1 file changed, 169 insertions(+)
+  INFO [4eea9c9e] Finished in 0.016 seconds with exit status 0 (successful).
+  INFO [dcb09dab] Running /usr/bin/env git push as bones@localhost
+ DEBUG [dcb09dab] Command: /usr/bin/env git push
+ DEBUG [dcb09dab] 	To github.com:Sebagabones/emacsConfCICD.git
+ DEBUG [dcb09dab] 	   9630848..232f238  main -> main
+  INFO [dcb09dab] Finished in 2.819 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 03:39:44 +0800 cap Prod deploy
+  INFO ---------------------------------------------------------------------------
+  INFO Running task on boneswebhome.lab.mahoosively.gay, deploying at /var/www/mahoosively.gay/public_html/emacsConfig
+ DEBUG [f3329733] Running /usr/bin/env uptime as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [f3329733] Command: /usr/bin/env uptime
+ DEBUG [f3329733] 	 03:39:44 up 16 days,  7:02,  1 user,  load average: 0.01, 0.01, 0.00
+ DEBUG [f3329733] Finished in 0.329 seconds with exit status 0 (successful).
+  INFO Host boneswebhome.lab.mahoosively.gay (app, db, web):	03:39:44 up 16 days,  7:02,  1 user,  load average: 0.01, 0.01, 0.00
+  INFO [672f6570] Running /usr/bin/env mkdir -p /tmp as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [672f6570] Command: /usr/bin/env mkdir -p /tmp
+  INFO [672f6570] Finished in 0.053 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-d26ba71240843a49e99e.sh 0.0%
+  INFO Uploading /tmp/git-ssh-d26ba71240843a49e99e.sh 100.0%
+  INFO [bd27b5e8] Running /usr/bin/env chmod 700 /tmp/git-ssh-d26ba71240843a49e99e.sh as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [bd27b5e8] Command: /usr/bin/env chmod 700 /tmp/git-ssh-d26ba71240843a49e99e.sh
+  INFO [bd27b5e8] Finished in 0.054 seconds with exit status 0 (successful).
+  INFO [82eb7902] Running /usr/bin/env git ls-remote git@github.com:Sebagabones/emacsConfCICD.git HEAD as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [82eb7902] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-d26ba71240843a49e99e.sh" ; /usr/bin/env git ls-remote git@github.com:Sebagabones/emacsConfCICD.git HEAD )
+ DEBUG [82eb7902] 	232f238504315f547ee3f7e0062ac10efd3f5dc1	HEAD
+  INFO [82eb7902] Finished in 2.996 seconds with exit status 0 (successful).
+  INFO [17601c3f] Running /usr/bin/env mkdir -p /var/www/mahoosively.gay/public_html/emacsConfig/shared /var/www/mahoosively.gay/public_html/emacsConfig/releases as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [17601c3f] Command: /usr/bin/env mkdir -p /var/www/mahoosively.gay/public_html/emacsConfig/shared /var/www/mahoosively.gay/public_html/emacsConfig/releases
+  INFO [17601c3f] Finished in 0.011 seconds with exit status 0 (successful).
+ DEBUG [4c301889] Running [ -f /var/www/mahoosively.gay/public_html/emacsConfig/current/REVISION ] as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [4c301889] Command: [ -f /var/www/mahoosively.gay/public_html/emacsConfig/current/REVISION ]
+ DEBUG [4c301889] Finished in 0.057 seconds with exit status 0 (successful).
+ DEBUG [b0cdeba1] Running /usr/bin/env cat /var/www/mahoosively.gay/public_html/emacsConfig/current/REVISION 2>/dev/null as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [b0cdeba1] Command: /usr/bin/env cat /var/www/mahoosively.gay/public_html/emacsConfig/current/REVISION 2>/dev/null
+ DEBUG [b0cdeba1] 	9630848fbfcc69345bca65690bc609b4f64c87d5
+ DEBUG [b0cdeba1] Finished in 0.059 seconds with exit status 0 (successful).
+ DEBUG [3af72e55] Running [ -f /var/www/mahoosively.gay/public_html/emacsConfig/current/REVISION_TIME ] as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [3af72e55] Command: [ -f /var/www/mahoosively.gay/public_html/emacsConfig/current/REVISION_TIME ]
+ DEBUG [3af72e55] Finished in 0.052 seconds with exit status 0 (successful).
+ DEBUG [428b57d2] Running /usr/bin/env cat /var/www/mahoosively.gay/public_html/emacsConfig/current/REVISION_TIME 2>/dev/null as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [428b57d2] Command: /usr/bin/env cat /var/www/mahoosively.gay/public_html/emacsConfig/current/REVISION_TIME 2>/dev/null
+ DEBUG [428b57d2] 	1735501121
+ DEBUG [428b57d2] Finished in 0.059 seconds with exit status 0 (successful).
+ DEBUG [ce5737db] Running [ -f /var/www/mahoosively.gay/public_html/emacsConfig/repo/HEAD ] as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [ce5737db] Command: [ -f /var/www/mahoosively.gay/public_html/emacsConfig/repo/HEAD ]
+ DEBUG [ce5737db] Finished in 0.052 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /var/www/mahoosively.gay/public_html/emacsConfig/repo
+ DEBUG [af2503bf] Running if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/repo; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/repo'" 1>&2; false; fi as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [af2503bf] Command: if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/repo; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/repo'" 1>&2; false; fi
+ DEBUG [af2503bf] Finished in 0.055 seconds with exit status 0 (successful).
+  INFO [7ed1933a] Running /usr/bin/env git remote set-url origin git@github.com:Sebagabones/emacsConfCICD.git as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [7ed1933a] Command: cd /var/www/mahoosively.gay/public_html/emacsConfig/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-d26ba71240843a49e99e.sh" ; /usr/bin/env git remote set-url origin git@github.com:Sebagabones/emacsConfCICD.git )
+  INFO [7ed1933a] Finished in 0.055 seconds with exit status 0 (successful).
+  INFO [115b70d8] Running /usr/bin/env git remote update --prune as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [115b70d8] Command: cd /var/www/mahoosively.gay/public_html/emacsConfig/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-d26ba71240843a49e99e.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [115b70d8] 	From github.com:Sebagabones/emacsConfCICD
+ DEBUG [115b70d8] 	   9630848..232f238  main       -> main
+  INFO [115b70d8] Finished in 3.287 seconds with exit status 0 (successful).
+ DEBUG [c78569ba] Running if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/repo; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/repo'" 1>&2; false; fi as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [c78569ba] Command: if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/repo; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/repo'" 1>&2; false; fi
+ DEBUG [c78569ba] Finished in 0.009 seconds with exit status 0 (successful).
+  INFO [9bcdb314] Running /usr/bin/env mkdir -p /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947 as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [9bcdb314] Command: cd /var/www/mahoosively.gay/public_html/emacsConfig/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-d26ba71240843a49e99e.sh" ; /usr/bin/env mkdir -p /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947 )
+  INFO [9bcdb314] Finished in 0.058 seconds with exit status 0 (successful).
+  INFO [c16fd863] Running /usr/bin/env git archive main | /usr/bin/env tar -x -f - -C /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947 as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [c16fd863] Command: cd /var/www/mahoosively.gay/public_html/emacsConfig/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-d26ba71240843a49e99e.sh" ; /usr/bin/env git archive main | /usr/bin/env tar -x -f - -C /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947 )
+  INFO [c16fd863] Finished in 0.065 seconds with exit status 0 (successful).
+ DEBUG [b02924dc] Running if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/repo; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/repo'" 1>&2; false; fi as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [b02924dc] Command: if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/repo; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/repo'" 1>&2; false; fi
+ DEBUG [b02924dc] Finished in 0.052 seconds with exit status 0 (successful).
+ DEBUG [4ef6c5a6] Running /usr/bin/env git rev-list --max-count=1 main as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [4ef6c5a6] Command: cd /var/www/mahoosively.gay/public_html/emacsConfig/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-d26ba71240843a49e99e.sh" ; /usr/bin/env git rev-list --max-count=1 main )
+ DEBUG [4ef6c5a6] 	232f238504315f547ee3f7e0062ac10efd3f5dc1
+ DEBUG [4ef6c5a6] Finished in 0.058 seconds with exit status 0 (successful).
+ DEBUG [d0ae7946] Running if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947'" 1>&2; false; fi as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [d0ae7946] Command: if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947'" 1>&2; false; fi
+ DEBUG [d0ae7946] Finished in 0.051 seconds with exit status 0 (successful).
+  INFO [dfeaef3c] Running /usr/bin/env echo "232f238504315f547ee3f7e0062ac10efd3f5dc1" > REVISION as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [dfeaef3c] Command: cd /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947 && /usr/bin/env echo "232f238504315f547ee3f7e0062ac10efd3f5dc1" > REVISION
+  INFO [dfeaef3c] Finished in 0.054 seconds with exit status 0 (successful).
+ DEBUG [c9bab09f] Running if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/repo; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/repo'" 1>&2; false; fi as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [c9bab09f] Command: if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/repo; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/repo'" 1>&2; false; fi
+ DEBUG [c9bab09f] Finished in 0.054 seconds with exit status 0 (successful).
+ DEBUG [26d36362] Running /usr/bin/env git --no-pager log -1 --pretty=format:"%ct" main as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [26d36362] Command: cd /var/www/mahoosively.gay/public_html/emacsConfig/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-d26ba71240843a49e99e.sh" ; /usr/bin/env git --no-pager log -1 --pretty=format:"%ct" main )
+ DEBUG [26d36362] 	1735501169
+ DEBUG [26d36362] Finished in 0.058 seconds with exit status 0 (successful).
+ DEBUG [af13a469] Running if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947'" 1>&2; false; fi as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [af13a469] Command: if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947'" 1>&2; false; fi
+ DEBUG [af13a469] Finished in 0.052 seconds with exit status 0 (successful).
+  INFO [11846ac6] Running /usr/bin/env echo "1735501169" > REVISION_TIME as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [11846ac6] Command: cd /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947 && /usr/bin/env echo "1735501169" > REVISION_TIME
+  INFO [11846ac6] Finished in 0.053 seconds with exit status 0 (successful).
+  INFO Running pygments on boneswebhome.lab.mahoosively.gay
+  INFO running pygmentize on config.el
+  INFO [8a8b6d7c] Running /usr/bin/env pygmentize /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/config.el -O cssclass=syntax -o /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/config.el.html as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [8a8b6d7c] Command: /usr/bin/env pygmentize /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/config.el -O cssclass=syntax -o /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/config.el.html
+  INFO [8a8b6d7c] Finished in 0.220 seconds with exit status 0 (successful).
+  INFO running pygmentize on packages.el
+  INFO [d2ee2997] Running /usr/bin/env pygmentize /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/packages.el -O cssclass=syntax -o /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/packages.el.html as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [d2ee2997] Command: /usr/bin/env pygmentize /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/packages.el -O cssclass=syntax -o /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/packages.el.html
+  INFO [d2ee2997] Finished in 0.227 seconds with exit status 0 (successful).
+  INFO running pygmentize on init.el
+  INFO [919c5433] Running /usr/bin/env pygmentize /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/init.el -O cssclass=syntax -o /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/init.el.html as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [919c5433] Command: /usr/bin/env pygmentize /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/init.el -O cssclass=syntax -o /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/init.el.html
+  INFO [919c5433] Finished in 0.222 seconds with exit status 0 (successful).
+  INFO Copying config.el.html
+  INFO [809101a9] Running /usr/bin/env cp /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/config.el.html /var/www/mahoosively.gay/public_html/mahoosivelygay/templates/ as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [809101a9] Command: /usr/bin/env cp /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/config.el.html /var/www/mahoosively.gay/public_html/mahoosivelygay/templates/
+  INFO [809101a9] Finished in 0.058 seconds with exit status 0 (successful).
+  INFO Copying packages.el.html
+  INFO [7186330b] Running /usr/bin/env cp /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/packages.el.html /var/www/mahoosively.gay/public_html/mahoosivelygay/templates/ as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [7186330b] Command: /usr/bin/env cp /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/packages.el.html /var/www/mahoosively.gay/public_html/mahoosivelygay/templates/
+  INFO [7186330b] Finished in 0.054 seconds with exit status 0 (successful).
+  INFO Copying init.el.html
+  INFO [52dfc78d] Running /usr/bin/env cp /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/init.el.html /var/www/mahoosively.gay/public_html/mahoosivelygay/templates/ as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [52dfc78d] Command: /usr/bin/env cp /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947/init.el.html /var/www/mahoosively.gay/public_html/mahoosivelygay/templates/
+  INFO [52dfc78d] Finished in 0.056 seconds with exit status 0 (successful).
+  INFO Running SSRI on boneswebhome.lab.mahoosively.gay
+  INFO [068c03e4] Running /usr/bin/env ssri -d /var/www/mahoosively.gay/public_html/mahoosivelygay/staging -t /var/www/mahoosively.gay/public_html/mahoosivelygay/templates -o /var/www/mahoosively.gay/public_html/mahoosivelygay/sites --no-warnings as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [068c03e4] Command: /usr/bin/env ssri -d /var/www/mahoosively.gay/public_html/mahoosivelygay/staging -t /var/www/mahoosively.gay/public_html/mahoosivelygay/templates -o /var/www/mahoosively.gay/public_html/mahoosivelygay/sites --no-warnings
+ DEBUG [068c03e4] 	[92m✓ /var/www/mahoosively.gay/public_html/mahoosivelygay/templates/footer.html successfully included in  11 files [0m
+[92m✓ /var/www/mahoosively.gay/public_html/mahoosivelygay/templates/init.el.html successfully included in 1 file [0m
+[92m✓ /var/www/mahoosively.gay/public_html/mahoosivelygay/templates/packages.el.html successfully included in 1 file [0m
+[92m✓ /var/www/mahoosively.gay/public_html/mahoosivelygay/templates/config.el.html successfully included in 1 file [0m
+[92m✓ Looked at 12 files in /var/www/mahoosively.gay/public_html/mahoosivelygay/staging, found 11 file(s) with include statements, and output files to /var/www/mahoosively.gay/public_html/mahoosivelygay/sites [0m
+[92m✓ 0 errors encountered [0m
+  INFO [068c03e4] Finished in 0.103 seconds with exit status 0 (successful).
+  INFO [fde3324b] Running /usr/bin/env ln -s /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947 /var/www/mahoosively.gay/public_html/emacsConfig/releases/current as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [fde3324b] Command: /usr/bin/env ln -s /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947 /var/www/mahoosively.gay/public_html/emacsConfig/releases/current
+  INFO [fde3324b] Finished in 0.056 seconds with exit status 0 (successful).
+  INFO [361e4b50] Running /usr/bin/env mv /var/www/mahoosively.gay/public_html/emacsConfig/releases/current /var/www/mahoosively.gay/public_html/emacsConfig as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [361e4b50] Command: /usr/bin/env mv /var/www/mahoosively.gay/public_html/emacsConfig/releases/current /var/www/mahoosively.gay/public_html/emacsConfig
+  INFO [361e4b50] Finished in 0.056 seconds with exit status 0 (successful).
+ DEBUG [7ba16665] Running /usr/bin/env ls -x /var/www/mahoosively.gay/public_html/emacsConfig/releases as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [7ba16665] Command: /usr/bin/env ls -x /var/www/mahoosively.gay/public_html/emacsConfig/releases
+ DEBUG [7ba16665] 	20241229193644	20241229193739	20241229193749	20241229193836	20241229193924
+20241229193947
+ DEBUG [7ba16665] Finished in 0.055 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on boneswebhome.lab.mahoosively.gay
+ DEBUG [c7c72bf3] Running [ -d /var/www/mahoosively.gay/public_html/emacsConfig/current ] as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [c7c72bf3] Command: [ -d /var/www/mahoosively.gay/public_html/emacsConfig/current ]
+ DEBUG [c7c72bf3] Finished in 0.052 seconds with exit status 0 (successful).
+ DEBUG [11b371d9] Running /usr/bin/env readlink /var/www/mahoosively.gay/public_html/emacsConfig/current as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [11b371d9] Command: /usr/bin/env readlink /var/www/mahoosively.gay/public_html/emacsConfig/current
+ DEBUG [11b371d9] 	/var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193947
+ DEBUG [11b371d9] Finished in 0.054 seconds with exit status 0 (successful).
+  INFO [765421f8] Running /usr/bin/env rm -rf /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193644 as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [765421f8] Command: /usr/bin/env rm -rf /var/www/mahoosively.gay/public_html/emacsConfig/releases/20241229193644
+  INFO [765421f8] Finished in 0.056 seconds with exit status 0 (successful).
+ DEBUG [89844fab] Running if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/releases; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/releases'" 1>&2; false; fi as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [89844fab] Command: if test ! -d /var/www/mahoosively.gay/public_html/emacsConfig/releases; then echo "Directory does not exist '/var/www/mahoosively.gay/public_html/emacsConfig/releases'" 1>&2; false; fi
+ DEBUG [89844fab] Finished in 0.053 seconds with exit status 0 (successful).
+  INFO [16d3a1f0] Running /usr/bin/env echo "Branch main (at 232f238504315f547ee3f7e0062ac10efd3f5dc1) deployed as release 20241229193947 by bones" >> /var/www/mahoosively.gay/public_html/emacsConfig/revisions.log as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [16d3a1f0] Command: cd /var/www/mahoosively.gay/public_html/emacsConfig/releases && /usr/bin/env echo "Branch main (at 232f238504315f547ee3f7e0062ac10efd3f5dc1) deployed as release 20241229193947 by bones" >> /var/www/mahoosively.gay/public_html/emacsConfig/revisions.log
+  INFO [16d3a1f0] Finished in 0.052 seconds with exit status 0 (successful).
+ DEBUG [b47e477f] Running /usr/bin/env date as bones@localhost
+ DEBUG [b47e477f] Command: /usr/bin/env date
+ DEBUG [b47e477f] 	Mon 30 Dec 2024 03:39:53 AWST
+ DEBUG [b47e477f] Finished in 0.001 seconds with exit status 0 (successful).
+  INFO [d5cf43e7] Running /usr/bin/env git add . as bones@localhost
+ DEBUG [d5cf43e7] Command: /usr/bin/env git add .
