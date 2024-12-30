@@ -8,7 +8,6 @@ task :ssriRun do
     staging = "#{mainDirLoc}/staging"
     templates = "#{mainDirLoc}/templates"
     sites = "#{mainDirLoc}/sites"
-    # execute :ssri, "-h"
     execute :ssri, "-d", "#{staging}", "-t", "#{templates}", "-o", "#{sites}", "--no-warnings"
 
   end
