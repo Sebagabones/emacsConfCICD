@@ -35,6 +35,7 @@
 
 (setq doom-theme 'doom-tokyo-night)
 
+
 ;; (setq doom-theme 'catppuccin)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -378,7 +379,6 @@ function that sets `deactivate-mark' to t."
   (global-set-key (kbd "C-c C-d") 'ee-delta)
   (global-set-key (kbd "C-c C-a") 'ee-rg)
   )
-
 
 
 ;; When idle for 15sec run the GC no matter what.
