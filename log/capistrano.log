@@ -10221,3 +10221,43 @@ inxi: 3.3.26
  DEBUG [bf9e7a64] Finished in 0.002 seconds with exit status 0 (successful).
   INFO [7cee2c35] Running /usr/bin/env git add . as bones@localhost
  DEBUG [7cee2c35] Command: /usr/bin/env git add .
+  INFO [7cee2c35] Finished in 0.020 seconds with exit status 0 (successful).
+  INFO [e8e8c0bf] Running /usr/bin/env git commit -m ' Mon 30 Dec 2024 15:55:49 AWST ' as bones@localhost
+ DEBUG [e8e8c0bf] Command: /usr/bin/env git commit -m ' Mon 30 Dec 2024 15:55:49 AWST '
+ DEBUG [e8e8c0bf] 	[main b1f8618]  Mon 30 Dec 2024 15:55:49 AWST
+ DEBUG [e8e8c0bf] 	 2 files changed, 34 insertions(+), 1 deletion(-)
+  INFO [e8e8c0bf] Finished in 0.019 seconds with exit status 0 (successful).
+  INFO [0da299c8] Running /usr/bin/env git push as bones@localhost
+ DEBUG [0da299c8] Command: /usr/bin/env git push
+ DEBUG [0da299c8] 	To github.com:Sebagabones/emacsConfCICD.git
+ DEBUG [0da299c8] 	   879d559..b1f8618  main -> main
+  INFO [0da299c8] Finished in 2.818 seconds with exit status 0 (successful).
+  INFO [7eed5d00] Running /usr/bin/env mkdir -p /tmp as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [7eed5d00] Command: /usr/bin/env mkdir -p /tmp
+  INFO [7eed5d00] Finished in 0.329 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-db0477ef1203788a1df4.sh 0.0%
+  INFO Uploading /tmp/git-ssh-db0477ef1203788a1df4.sh 100.0%
+  INFO [3e7ab613] Running /usr/bin/env chmod 700 /tmp/git-ssh-db0477ef1203788a1df4.sh as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [3e7ab613] Command: /usr/bin/env chmod 700 /tmp/git-ssh-db0477ef1203788a1df4.sh
+  INFO [3e7ab613] Finished in 0.053 seconds with exit status 0 (successful).
+  INFO [f1a78c1f] Running /usr/bin/env git ls-remote git@github.com:Sebagabones/emacsConfCICD.git HEAD as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [f1a78c1f] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-db0477ef1203788a1df4.sh" ; /usr/bin/env git ls-remote git@github.com:Sebagabones/emacsConfCICD.git HEAD )
+  INFO ---------------------------------------------------------------------------
+  INFO START 2024-12-30 15:56:06 +0800 cap Prod deploy
+  INFO ---------------------------------------------------------------------------
+  INFO Running task on boneswebhome.lab.mahoosively.gay, deploying at /var/www/mahoosively.gay/public_html/emacsConfig
+ DEBUG [28ad2eb6] Running /usr/bin/env inxi as bones@boneswebhome.lab.mahoosively.gay
+ DEBUG [28ad2eb6] Command: /usr/bin/env inxi
+ DEBUG [28ad2eb6] 	CPU: 2x 1-core Intel Xeon E5-2697 v2 (-SMP-) speed: 2700 MHz Kernel: 6.1.0-18-amd64 x86_64
+Up: 16d 19h 18m Mem: 632.6/9926.2 MiB (6.4%) Storage: 20 GiB (33.6% used) Procs: 150 Shell: sshd
+inxi: 3.3.26
+ DEBUG [28ad2eb6] Finished in 1.049 seconds with exit status 0 (successful).
+  INFO CPU: 2x 1-core Intel Xeon E5-2697 v2 (-SMP-) speed: 2700 MHz Kernel: 6.1.0-18-amd64 x86_64
+Up: 16d 19h 18m Mem: 632.6/9926.2 MiB (6.4%) Storage: 20 GiB (33.6% used) Procs: 150 Shell: sshd
+inxi: 3.3.26
+ DEBUG [c873428a] Running /usr/bin/env date as bones@localhost
+ DEBUG [c873428a] Command: /usr/bin/env date
+ DEBUG [c873428a] 	Mon 30 Dec 2024 15:56:07 AWST
+ DEBUG [c873428a] Finished in 0.001 seconds with exit status 0 (successful).
+  INFO [1edfd2c3] Running /usr/bin/env git add . as bones@localhost
+ DEBUG [1edfd2c3] Command: /usr/bin/env git add .
