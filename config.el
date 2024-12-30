@@ -232,7 +232,12 @@ function that sets `deactivate-mark' to t."
   ;; config.el
   ;; (require 'tera-mode)
 ;; (treemacs-no-png-images t)
-(setq doom-themes-treemacs-theme "doom-colors")
+(use-package! treemacs
+  :defer t
+  :config
+  (setq doom-themes-treemacs-theme "doom-colors")
+  )
+
 (setq treemacs-no-png-images t)
 
 
