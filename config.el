@@ -34,13 +34,38 @@
 ;; `load-theme' function. This is the default:
 
 (setq doom-theme 'doom-tokyo-night)
+(custom-theme-set-faces! 'doom-tokyo-night
+  `(tree-sitter-hl-face:constructor :foreground ,(doom-color 'blue))
+  `(tree-sitter-hl-face:number :foreground ,(doom-color 'orange))
+  `(tree-sitter-hl-face:attribute :foreground ,(doom-color 'magenta) :weight bold)
+  `(tree-sitter-hl-face:variable :foreground ,(doom-color 'base7) :weight bold)
+  `(tree-sitter-hl-face:variable.builtin :foreground ,(doom-color 'red))
+  `(tree-sitter-hl-face:constant.builtin :foreground ,(doom-color 'magenta) :weight bold)
+  `(tree-sitter-hl-face:constant :foreground ,(doom-color 'blue) :weight bold)
+  `(tree-sitter-hl-face:function.macro :foreground ,(doom-color 'teal))
+  `(tree-sitter-hl-face:label :foreground ,(doom-color 'magenta))
+  `(tree-sitter-hl-face:operator :foreground ,(doom-color 'blue))
+  `(tree-sitter-hl-face:variable.parameter :foreground ,(doom-color 'cyan))
+  `(tree-sitter-hl-face:punctuation.delimiter :foreground ,(doom-color 'cyan))
+  `(tree-sitter-hl-face:punctuation.bracket :foreground ,(doom-color 'cyan))
+  `(tree-sitter-hl-face:punctuation.special :foreground ,(doom-color 'cyan))
+  `(tree-sitter-hl-face:type :foreground ,(doom-color 'yellow))
+  `(tree-sitter-hl-face:type.builtin :foreground ,(doom-color 'blue))
+  `(tree-sitter-hl-face:tag :foreground ,(doom-color 'base7))
+  `(tree-sitter-hl-face:string :foreground ,(doom-color 'green))
+  `(tree-sitter-hl-face:comment :foreground ,(doom-color 'base6))
+  `(tree-sitter-hl-face:function :foreground ,(doom-color 'cyan))
+  `(tree-sitter-hl-face:method :foreground ,(doom-color 'blue))
+  `(tree-sitter-hl-face:function.builtin :foreground ,(doom-color 'cyan))
+  `(tree-sitter-hl-face:property :foreground ,(doom-color 'blue))
+  `(tree-sitter-hl-face:keyword :foreground ,(doom-color 'magenta)))
 
 
 ;; (setq doom-theme 'catppuccin)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
-
+(setq tree-sitter-hl-mode t)
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
@@ -385,7 +410,7 @@ function that sets `deactivate-mark' to t."
   (global-set-key (kbd "C-c C-a") 'ee-rg)
   )
 
-
+(setq treesit-font-lock-level 4)
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
   (run-with-idle-timer 15 t
