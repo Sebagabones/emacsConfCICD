@@ -34,6 +34,8 @@
 ;; `load-theme' function. This is the default:
 
 (setq doom-theme 'doom-tokyo-night)
+
+
 (custom-theme-set-faces! 'doom-tokyo-night
   `(tree-sitter-hl-face:constructor :foreground ,(doom-color 'blue))
   `(tree-sitter-hl-face:number :foreground ,(doom-color 'orange))
@@ -408,9 +410,15 @@ function that sets `deactivate-mark' to t."
   (global-set-key (kbd "C-c C-s") 'ee-line)
   (global-set-key (kbd "C-c C-d") 'ee-delta)
   (global-set-key (kbd "C-c C-a") 'ee-rg)
+  (global-set-key (kbd "C-c C-p") 'ee-spotify-player)
   )
 
 (setq treesit-font-lock-level 4)
+
+
+
+
+
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
   (run-with-idle-timer 15 t

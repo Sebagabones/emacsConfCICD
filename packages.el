@@ -22,6 +22,7 @@
 (package! comment-dwim-2)
 (package! lsp-pyright)
 (package! catppuccin-theme)
+
   ;; package.el
   (package! tera-mode
     :recipe (:host github :repo "svavs/tera-mode"))
@@ -29,8 +30,6 @@
 (package! eee
   :recipe (:host github :repo "Sebagabones/eee.el"
            :files (:defaults "*.el" "*.sh")))
-
-
 
 ;; (package! eee
 ;;   :recipe (:host github :repo "eval-exec/eee.el"
