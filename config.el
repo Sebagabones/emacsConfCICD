@@ -441,6 +441,10 @@ function that sets `deactivate-mark' to t."
                        :revision "master"
                        :source-dir "src")))
     (add-to-list 'treesit-auto-recipe-list astro-recipe)))
+
+(setq auto-mode-alist
+      (append '((".*\\.el\\'" . elisp-byte-code-mode))
+              auto-mode-alist))
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
   (run-with-idle-timer 15 t
