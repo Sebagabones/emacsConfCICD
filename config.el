@@ -415,10 +415,32 @@ function that sets `deactivate-mark' to t."
 
 (setq treesit-font-lock-level 4)
 
+(setq treesit-language-source-alist
+      '((astro "https://github.com/virchau13/tree-sitter-astro")
+        (css "https://github.com/tree-sitter/tree-sitter-css")
+        (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")))
 
+(use-package! treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 
-
-
+(use-package! astro-ts-mode
+    :after treesit-auto
+  :init
+  (when (modulep! +lsp)
+    (add-hook 'astro-ts-mode-hook #'lsp! 'append))
+  :config
+  (global-treesit-auto-mode)
+  (let ((astro-recipe (make-treesit-auto-recipe
+                       :lang 'astro
+                       :ts-mode 'astro-ts-mode
+                       :url "https://github.com/virchau13/tree-sitter-astro"
+                       :revision "master"
+                       :source-dir "src")))
+    (add-to-list 'treesit-auto-recipe-list astro-recipe)))
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
   (run-with-idle-timer 15 t
