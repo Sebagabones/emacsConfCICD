@@ -35,6 +35,7 @@
   :recipe (:host github :repo"Sorixelle/astro-ts-mode"))
 
 (package! treesit-auto)
+(package! apheleia)
 ;; (package! eee
 ;;   :recipe (:host github :repo "eval-exec/eee.el"
 ;;            :files (:defaults "*.el" "*.sh")))

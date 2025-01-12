@@ -126,7 +126,7 @@
         (boolean :style "cod" :icon "symbol_boolean" :face font-lock-builtin-face)
         ;; ...
         (t :style "cod" :icon "code" :face font-lock-warning-face)))
-        ;; Remember to add an entry for `t', the library uses that as default.
+;; Remember to add an entry for `t', the library uses that as default.
 
 ;; The Custom interface is also supported for tuning the variable above.
 (setq kill-whole-line t)
@@ -208,13 +208,13 @@
 (defadvice backward-kill-word (around delete-pair activate)
   (if (eq (char-syntax (char-before)) ?\()
       (progn
-    (backward-char 1)
-    (save-excursion
-      (forward-sexp 1)
-      (delete-char -1))
-    (forward-char 1)
-    (append-next-kill)
-    (kill-backward-chars 1))
+        (backward-char 1)
+        (save-excursion
+          (forward-sexp 1)
+          (delete-char -1))
+        (forward-char 1)
+        (append-next-kill)
+        (kill-backward-chars 1))
     ad-do-it))
 
 (defun acg/with-mark-active (&rest args)
@@ -256,8 +256,8 @@ function that sets `deactivate-mark' to t."
   t)
 ;; you can select the key you prefer to
 (map! "C-c C-t" #'treemacs-select-window)
-  ;; config.el
-  ;; (require 'tera-mode)
+;; config.el
+;; (require 'tera-mode)
 ;; (treemacs-no-png-images t)
 (use-package! treemacs
   :defer t
@@ -375,7 +375,7 @@ function that sets `deactivate-mark' to t."
     (map! :map corfu-map
           "TAB"     #'corfu-insert))
   (keymap-unset corfu-map "RET")
-    (corfu-terminal-mode +1))
+  (corfu-terminal-mode +1))
 
 
 
@@ -403,7 +403,7 @@ function that sets `deactivate-mark' to t."
   :config
 
   ;; Should have wezterm or alacritty installed, more terminal application is supporting...
-;; Issues and pull requests are welcome
+  ;; Issues and pull requests are welcome
   (setq ee-terminal-command "alacritty")
   (global-set-key (kbd "C-c C-o") 'ee-find)
   (global-set-key (kbd "C-c C-l") 'ee-lazygit)
@@ -413,38 +413,31 @@ function that sets `deactivate-mark' to t."
   (global-set-key (kbd "C-c C-p") 'ee-spotify-player)
   )
 
-(setq treesit-font-lock-level 4)
+(setq treesit-font-lock-level 4)        ;
 
 (setq treesit-language-source-alist
       '((astro "https://github.com/virchau13/tree-sitter-astro")
         (css "https://github.com/tree-sitter/tree-sitter-css")
         (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")))
 
-(use-package! treesit-auto
-  :custom
-  (treesit-auto-install 'prompt)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
+(setq global-tree-sitter-mode 't)
 
-(use-package! astro-ts-mode
-    :after treesit-auto
-  :init
-  (when (modulep! +lsp)
-    (add-hook 'astro-ts-mode-hook #'lsp! 'append))
-  :config
-  (global-treesit-auto-mode)
-  (let ((astro-recipe (make-treesit-auto-recipe
-                       :lang 'astro
-                       :ts-mode 'astro-ts-mode
-                       :url "https://github.com/virchau13/tree-sitter-astro"
-                       :revision "master"
-                       :source-dir "src")))
-    (add-to-list 'treesit-auto-recipe-list astro-recipe)))
+;; (use-package! astro-ts-mode
+;;   :after treesit-auto
+;;   :init
+;;   (when (modulep! +lsp)
+;;     (add-hook 'astro-ts-mode-hook #'lsp! 'append))
+;;   :config
+;;   (global-treesit-auto-mode)
+;;   (let ((astro-recipe (make-treesit-auto-recipe
+;;                        :lang 'astro
+;;                        :ts-mode 'astro-ts-mode
+;;                        :url "https://github.com/virchau13/tree-sitter-astro"
+;;                        :revision "master"
+;;                        :source-dir "src")))
+;;     (add-to-list 'treesit-auto-recipe-list astro-recipe)))
 
-(setq auto-mode-alist
-      (append '((".*\\.el\\'" . elisp-byte-code-mode))
-              auto-mode-alist))
+
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
   (run-with-idle-timer 15 t
