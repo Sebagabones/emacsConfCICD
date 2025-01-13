@@ -2,7 +2,7 @@
 
 
 desc "Runs ssri"
-task :ssriRun do
+task :yarnBuild do
   on roles(:all) do |host|
     info "Running yarb on #{host}"
     within "/var/www/mahoosively.gay/public_html/astroSite/cap/current/" do

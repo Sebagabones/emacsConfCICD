@@ -2,7 +2,7 @@
 
 newarray=%w{config.el packages.el init.el};
 desc "Copies files to webserver"
-task :cpPressri do
+task :cpPrebuild do
   on roles(:all) do |host|
     newarray.each do |file|
       info "Copying #{file}"
@@ -10,5 +10,5 @@ task :cpPressri do
       execute :cp, "#{dirPath}", "/var/www/mahoosively.gay/public_html/astroSite/cap/current/public/codeFiles/emacsConfFiles"
     end
   end
-  invoke(:ssriRun)
+  invoke(:yarnBuild)
 end

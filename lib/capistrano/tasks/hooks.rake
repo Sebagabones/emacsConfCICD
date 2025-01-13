@@ -4,4 +4,4 @@ before 'deploy:starting', :gitpush
 
 
 
-after 'deploy:updated', :cpPressri
+after 'deploy:updated', :cpPrebuild
