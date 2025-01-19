@@ -199,11 +199,11 @@
   (setq deactivate-mark nil))
 (ad-activate 'kill-ring-save)
 
-(defun mark-unmark-toggle()             ;does what it says on the box ~~fuck this took me way too long lmao~~
-  (interactive
-   (if mark-active
-       (deactivate-mark)
-     (push-mark nil nil t))))
+;; (defun mark-unmark-toggle()             ;does what it says on the box ~~fuck this took me way too long lmao~~
+;;   (interactive
+;;    (if mark-active
+;;        (deactivate-mark)
+;;      (push-mark nil nil t))))
 
 (defadvice backward-kill-word (around delete-pair activate)
   (if (eq (char-syntax (char-before)) ?\()
@@ -226,9 +226,9 @@ function that sets `deactivate-mark' to t."
 
 (setq cd2/region-command 'cd2/comment-or-uncomment-lines)
 
-(map! "M-#" #'comment-dwim-2)
-(map! "C-@" #'mark-unmark-toggle)
-(map! "C-SPC" #'mark-unmark-toggle)
+(map! "M-;" #'comment-dwim-2)
+;; (map! "C-@" #'mark-unmark-toggle)
+;; (map! "C-SPC" #'mark-unmark-toggle)
 
 (defun kill-line-or-region ()
   "kill region if active only or kill line normally"
