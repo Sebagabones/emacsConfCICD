@@ -270,6 +270,13 @@ function that sets `deactivate-mark' to t."
 
 (global-set-key (kbd "C-x C-t") 'ivy-switch-buffer-other-window)
 (global-set-key (kbd "C-<tab>") '+ivy/switch-workspace-buffer)
+(defun my-ivy-keybinding ()
+  "Rebind key only in Ivy buffers."
+  (define-key ivy-minibuffer-map (kbd "C-<tab>") 'ivy-next-line)
+  (define-key ivy-minibuffer-map (kbd "<C-S-iso-lefttab>") 'ivy-previous-line))
+
+(add-hook 'ivy-mode-hook 'my-ivy-keybinding)
+
 (setq persp-emacsclient-init-frame-behaviour-override "main")
 
 (global-set-key (kbd "C-c SPC") 'avy-goto-char)
@@ -300,40 +307,6 @@ function that sets `deactivate-mark' to t."
     (insert (shell-command-to-string "xsel -o -b"))
     )
   )
-
-
-;; (use-package lsp-mode
-;;   :hook ((c-mode          ; clangd
-;;           c++-mode        ; clangd
-;;           c-or-c++-mode   ; clangd
-;;           java-mode       ; eclipse-jdtls
-;;           js-mode         ; ts-ls (tsserver wrapper)
-;;           js-jsx-mode     ; ts-ls (tsserver wrapper)
-;;           typescript-mode ; ts-ls (tsserver wrapper)
-;;           python-mode     ; pyright
-;;           web-mode        ; ts-ls/HTML/CSS
-;;           haskell-mode    ; haskell-language-server
-;;           ) . lsp-deferred)
-;;   :commands lsp
-;;   :config
-;;   (setq lsp-auto-guess-root t)
-;;   (setq lsp-log-io nil)
-;;   (setq lsp-restart 'auto-restart)
-;;   (setq lsp-enable-symbol-highlighting nil)
-;;   (setq lsp-enable-on-type-formatting nil)
-;;   (setq lsp-signature-auto-activate nil)
-;;   (setq lsp-signature-render-documentation nil)
-;;   (setq lsp-eldoc-hook nil)
-;;   (setq lsp-modeline-code-actions-enable nil)
-;;   (setq lsp-modeline-diagnostics-enable nil)
-;;   (setq lsp-headerline-breadcrumb-enable nil)
-;;   (setq lsp-semantic-tokens-enable nil)
-;;   (setq lsp-enable-folding nil)
-;;   (setq lsp-enable-imenu nil)
-;;   (setq lsp-enable-snippet nil)
-;;   (setq read-process-output-max (* 1024 1024)) ;; 1MB
-;;   (setq lsp-idle-delay 0.5))
-
 
 
 ;; (use-package lsp-ui
@@ -436,7 +409,6 @@ function that sets `deactivate-mark' to t."
 ;;                        :revision "master"
 ;;                        :source-dir "src")))
 ;;     (add-to-list 'treesit-auto-recipe-list astro-recipe)))
-
 
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
