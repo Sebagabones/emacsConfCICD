@@ -37,6 +37,9 @@
 (package! treesit-auto)
 (package! apheleia)
 
+(package! vagrant)
+(package! vagrant-tramp)
+
 ;; (package! eee
 ;;   :recipe (:host github :repo "eval-exec/eee.el"
 ;;            :files (:defaults "*.el" "*.sh")))
