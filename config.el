@@ -410,6 +410,26 @@ function that sets `deactivate-mark' to t."
 ;;                        :source-dir "src")))
 ;;     (add-to-list 'treesit-auto-recipe-list astro-recipe)))
 
+
+(add-to-list 'auto-mode-alist '("\\.ci\\'" . pascal-mode))
+
+(defun my/ci-comment-tweak ()
+  (setq-local comment-start "// ")
+  (setq-local comment-end   ""))
+
+(eval-after-load "pascal-mode"
+  (add-hook 'pascal-mode-hook #'my/ci-comment-tweak))
+
+(defun org-show-todo-tree ()
+  "Create new indirect buffer with sparse tree of undone TODO items"
+  (interactive)
+  (clone-indirect-buffer "*org TODO undone*" t)
+  (org-show-todo-tree nil) ; mimics interactive usage
+  (org-remove-occur-highlights)
+)
+(require 'ox-md)
+(setq! erc-modules '(autojoin bufbar button completion fill imenu irccontrols list match menu move-to-prompt netsplit networks nickbar nicks notifications notify readonly ring spelling stamp track scrolltobottom))
+
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
   (run-with-idle-timer 15 t
