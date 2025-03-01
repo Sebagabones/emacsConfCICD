@@ -332,12 +332,12 @@ function that sets `deactivate-mark' to t."
         :config
         ;; Free the RET key for less intrusive behavior.
         ;; Option 1: Unbind RET completely
-        ;; (keymap-unset corfu-map "RET")
+        (keymap-unset corfu-map "RET")))
         ;; Option 2: Use RET only in shell modes
-        (keymap-set corfu-map "RET" `( menu-item "" nil :filter
-                                       ,(lambda (&optional _)
-                                          (and (derived-mode-p 'eshell-mode 'comint-mode)
-                                               #'corfu-send))))))
+        ;; (keymap-set corfu-map "RET" `( menu-item "" nil :filter
+        ;;                                ,(lambda (&optional _)
+        ;;                                   (and (derived-mode-p 'eshell-mode 'comint-mode)
+                                               ;; #'corfu-send))))))
 
   ;; else (optional)
   (use-package! corfu
@@ -385,6 +385,8 @@ function that sets `deactivate-mark' to t."
   (global-set-key (kbd "C-c C-a") 'ee-rg)
   (global-set-key (kbd "C-c C-p") 'ee-spotify-player)
   )
+
+(global-set-key (kbd "C-h C-w") `exit-minibuffer) ;;this was driving me bonkers lmao
 
 (setq treesit-font-lock-level 4)        ;
 
