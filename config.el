@@ -430,7 +430,14 @@ function that sets `deactivate-mark' to t."
   (org-remove-occur-highlights)
 )
 (require 'ox-md)
-(setq! erc-modules '(autojoin bufbar button completion fill imenu irccontrols list match menu move-to-prompt netsplit networks nickbar nicks notifications notify readonly ring spelling stamp track scrolltobottom))
+
+(setq! speedbar-update-flag 't)
+(setq! erc-modules '('(erc-modules
+   '(autojoin bufbar button completion fill imenu irccontrols list match menu
+     move-to-prompt netsplit networks nickbar nicks notifications notify
+     readonly ring spelling stamp track))))
+
+
 
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
