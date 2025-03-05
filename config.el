@@ -37,7 +37,7 @@
 
 
 (custom-theme-set-faces! 'doom-tokyo-night
-  `(tree-sitter-hl-face:constructor :foreground ,(doom-color 'blue))
+  `(tree-sitter-hl-face:constructor :foreground ,(doom-color 'blue ))
   `(tree-sitter-hl-face:number :foreground ,(doom-color 'orange))
   `(tree-sitter-hl-face:attribute :foreground ,(doom-color 'magenta) :weight bold)
   `(tree-sitter-hl-face:variable :foreground ,(doom-color 'base7) :weight bold)
@@ -280,7 +280,7 @@ function that sets `deactivate-mark' to t."
 (setq persp-emacsclient-init-frame-behaviour-override "main")
 
 (global-set-key (kbd "C-c SPC") 'avy-goto-char)
-(global-set-key (kbd "C-c C-SPC") 'avy-goto-char)
+;; (global-set-key (kbd "C-c C-SPC") 'avy-goto-char)
 
 (defun copy-to-clipboard ()
   (interactive)
@@ -309,15 +309,17 @@ function that sets `deactivate-mark' to t."
   )
 
 
-;; (use-package lsp-ui
-;;   :commands lsp-ui-mode
-;;   :config
-;;   (setq lsp-ui-doc-enable nil)
-;;   (setq lsp-ui-doc-header t)
-;;   (setq lsp-ui-doc-include-signature t)
-;;   (setq lsp-ui-doc-border (face-foreground 'default))
-;;   (setq lsp-ui-sideline-show-code-actions t)
-;;   (setq lsp-ui-sideline-delay 0.05))
+(use-package! lsp-ui
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-doc-enable t)
+  (setq lsp-ui-doc-header t)
+  (setq lsp-ui-imenu t)
+  (setq lsp-ui-doc-include-signature t)
+  (setq lsp-ui-doc-border (face-foreground 'default))
+  (setq lsp-ui-sideline-show-code-actions t)
+  (setq lsp-ui-sideline-delay 0.05))
+
 (if (display-graphic-p)
     (progn
       ;; if graphic
@@ -352,8 +354,8 @@ function that sets `deactivate-mark' to t."
 
 
 
-(custom-set-faces!
-  '(default :background nil))
+;; (custom-set-faces!
+;;   '(default :background nil))
 
 
 
@@ -437,6 +439,44 @@ function that sets `deactivate-mark' to t."
      move-to-prompt netsplit networks nickbar nicks notifications notify
      readonly ring spelling stamp track))))
 
+(setq indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1))
+
+(use-package! indent-bars
+ :hook ((tree-sitter-hl-mode) . indent-bars-mode) ; or whichever modes you prefer
+  :custom
+  (setopt
+		indent-bars-color '(highlight :face-bg t :blend 0.8)
+		indent-bars-pattern "."
+		indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 0.8)
+		indent-bars-highlight-current-depth '(:blend 1.0 :width 0.4 :pad 0.1 :pattern ".*.*.*.*.*.*.*.*" :zigzag 0.1)
+		indent-bars-pad-frac 0.3
+		indent-bars-ts-highlight-current-depth '(no-inherit) ; equivalent to nil
+		indent-bars-ts-color-by-depth '(no-inherit)
+  ;;       	indent-bars-ts-color '(inherit fringe :face-bg t :blend 0.2))
+  ;; (indent-bars-no-descend-lists t) ; no extra bars in continued func arg lists
+  ;; (indent-bars-treesit-support t)
+  ;; (indent-bars-treesit-ignore-blank-lines-types '("module"))
+  ;; ;; Add other languages as needed
+  ;; (indent-bars-treesit-scope '((python function_definition class_definition for_statement
+  ;;         if_statement with_statement while_statement)))
+  ;; ;; Note: wrap may not be needed if no-descend-list is enough
+  ;; ;;(indent-bars-treesit-wrap '((python argument_list parameters ; for python, as an example
+  ;; ;;				      list list_comprehension
+  ;; ;;				      dictionary dictionary_comprehension
+  ;; ;;				      parenthesized_expression subscript)))
+))
+
+
+(setq lsp t)
+(setq indent-bars-mode t)
+(setq tree-sitter-mode t)
+(setq org-todo-keyword-faces
+      '(("OKAY" . (:foreground (doom-color 'blue ) :weight bold))))
+
+;; (setq global-flycheck-mode t)
+;; (after! global-flycheck-mode
+;;   (setq lsp-ui t)
+;;   (setq lsp-ui-mode :enabled))
 
 
 ;; When idle for 15sec run the GC no matter what.

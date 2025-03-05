@@ -40,6 +40,7 @@
 (package! vagrant)
 (package! vagrant-tramp)
 
+(package! indent-bars)
 ;; (package! eee
 ;;   :recipe (:host github :repo "eval-exec/eee.el"
 ;;            :files (:defaults "*.el" "*.sh")))
