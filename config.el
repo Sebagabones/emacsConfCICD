@@ -73,6 +73,7 @@
 (setq org-directory "~/org/")
 
 
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -133,7 +134,7 @@
 
 (setq auto-save-default t
       make-backup-files t)
-(setq confirm-kill-emacs nil)
+;; (setq confirm-kill-emacs nil)
 (setq doom-font (font-spec :family "CodeNewRoman Nerd Font Mono" :size 14)
       doom-variable-pitch-font (font-spec :family "CodeNewRoman Nerd Font Mono" :size 14))
 (custom-set-faces!
@@ -332,8 +333,14 @@ function that sets `deactivate-mark' to t."
         (global-corfu-mode)
 
         :config
+        (keymap-unset corfu-map "RET")
+        (keymap-unset corfu-map "<return>")
         ;; Free the RET key for less intrusive behavior.
         ;; Option 1: Unbind RET completely
+        (after! corfu
+          (map! :map corfu-map
+          "<tab>"     #'corfu-insert))
+        (keymap-unset corfu-map "<return>")
         (keymap-unset corfu-map "RET")))
         ;; Option 2: Use RET only in shell modes
         ;; (keymap-set corfu-map "RET" `( menu-item "" nil :filter
@@ -350,9 +357,11 @@ function that sets `deactivate-mark' to t."
     (map! :map corfu-map
           "TAB"     #'corfu-insert))
   (keymap-unset corfu-map "RET")
-  (corfu-terminal-mode +1))
+  (corfu-terminal-mode +1)
+  (corfu-popupinfo-mode 't))
 
-
+;; (setq corfu-popupinfo-mode 't)
+;; (setq corfu-popupinfo-delay 0)
 
 ;; (custom-set-faces!
 ;;   '(default :background nil))
@@ -380,7 +389,7 @@ function that sets `deactivate-mark' to t."
   ;; Should have wezterm or alacritty installed, more terminal application is supporting...
   ;; Issues and pull requests are welcome
   (setq ee-terminal-command "alacritty")
-  (global-set-key (kbd "C-c C-o") 'ee-find)
+  ;; (global-set-key (kbd "C-c C-o") 'ee-find)
   (global-set-key (kbd "C-c C-l") 'ee-lazygit)
   (global-set-key (kbd "C-c C-s") 'ee-line)
   (global-set-key (kbd "C-c C-d") 'ee-delta)
@@ -473,10 +482,18 @@ function that sets `deactivate-mark' to t."
 (setq org-todo-keyword-faces
       '(("OKAY" . (:foreground (doom-color 'blue ) :weight bold))))
 
+
 ;; (setq global-flycheck-mode t)
 ;; (after! global-flycheck-mode
 ;;   (setq lsp-ui t)
 ;;   (setq lsp-ui-mode :enabled))
+(after! side-hustle
+  (setq side-hustle-display-alist
+        '((side . right)
+          (slot . 0)
+          (window-width . 40))))
+
+(global-set-key (kbd "C-c o i") 'side-hustle-toggle)
 
 
 ;; When idle for 15sec run the GC no matter what.

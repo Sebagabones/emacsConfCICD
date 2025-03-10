@@ -36,7 +36,8 @@
 
 (package! treesit-auto)
 (package! apheleia)
-
+(package! windsize)
+(package! side-hustle)
 (package! vagrant)
 (package! vagrant-tramp)
 
