@@ -269,14 +269,14 @@ function that sets `deactivate-mark' to t."
 (setq treemacs-no-png-images t)
 
 
-(global-set-key (kbd "C-x C-t") 'ivy-switch-buffer-other-window)
-(global-set-key (kbd "C-<tab>") '+ivy/switch-workspace-buffer)
-(defun my-ivy-keybinding ()
-  "Rebind key only in Ivy buffers."
-  (define-key ivy-minibuffer-map (kbd "C-<tab>") 'ivy-next-line)
-  (define-key ivy-minibuffer-map (kbd "<C-S-iso-lefttab>") 'ivy-previous-line))
+;; (global-set-key (kbd "C-x C-t") 'ivy-switch-buffer-other-window)
+(global-set-key (kbd "C-<tab>") '+vertico/switch-workspace-buffer)
+;; (defun my-ivy-keybinding ()
+;;   "Rebind key only in Ivy buffers."
+;;   (define-key vertico-minibuffer-map (kbd "C-<tab>") 'vertico-next)
+;;   (define-key vertico-minibuffer-map (kbd "<C-S-iso-lefttab>") 'vertico-previous))
 
-(add-hook 'ivy-mode-hook 'my-ivy-keybinding)
+;; (add-hook 'vertico-mode-hook 'my-ivy-keybinding)
 
 (setq persp-emacsclient-init-frame-behaviour-override "main")
 

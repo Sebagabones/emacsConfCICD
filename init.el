@@ -27,8 +27,8 @@
        (corfu +orderless +dabbrev +info +history +indexed +echo +cape)  ; complete with cap(f), cape and a flying feather!
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy +childframe +prescient +icons)               ; a search engine for love and life
-       ;;vertico           ; the search engine of the future
+       ;; (ivy +childframe +prescient +icons)               ; a search engine for love and life
+       (vertico +prescient +icons)           ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
