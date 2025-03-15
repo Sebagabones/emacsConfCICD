@@ -7,10 +7,10 @@
  '(erc-modules
    '(autojoin bufbar button completion fill imenu irccontrols list match menu
      move-to-prompt netsplit networks nickbar nicks notifications notify
-     readonly ring spelling stamp track)))
+     readonly ring spelling stamp track) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(sp-pair-overlay-face ((t nil))))

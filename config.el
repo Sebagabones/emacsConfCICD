@@ -135,8 +135,8 @@
 (setq auto-save-default t
       make-backup-files t)
 ;; (setq confirm-kill-emacs nil)
-(setq doom-font (font-spec :family "CodeNewRoman Nerd Font Mono" :size 14)
-      doom-variable-pitch-font (font-spec :family "CodeNewRoman Nerd Font Mono" :size 14))
+(setq doom-font (font-spec :family "CodeNewRoman Nerd Font Mono" :size 16)
+      doom-variable-pitch-font (font-spec :family "CodeNewRoman Nerd Font Mono" :size 16))
 (custom-set-faces!
   '(doom-dashboard-banner :inherit default)
   '(doom-dashboard-loaded :inherit default))
@@ -339,14 +339,14 @@ function that sets `deactivate-mark' to t."
         ;; Option 1: Unbind RET completely
         (after! corfu
           (map! :map corfu-map
-          "<tab>"     #'corfu-insert))
+                "<tab>"     #'corfu-insert))
         (keymap-unset corfu-map "<return>")
         (keymap-unset corfu-map "RET")))
-        ;; Option 2: Use RET only in shell modes
-        ;; (keymap-set corfu-map "RET" `( menu-item "" nil :filter
-        ;;                                ,(lambda (&optional _)
-        ;;                                   (and (derived-mode-p 'eshell-mode 'comint-mode)
-                                               ;; #'corfu-send))))))
+  ;; Option 2: Use RET only in shell modes
+  ;; (keymap-set corfu-map "RET" `( menu-item "" nil :filter
+  ;;                                ,(lambda (&optional _)
+  ;;                                   (and (derived-mode-p 'eshell-mode 'comint-mode)
+  ;; #'corfu-send))))))
 
   ;; else (optional)
   (use-package! corfu
@@ -439,42 +439,69 @@ function that sets `deactivate-mark' to t."
   (clone-indirect-buffer "*org TODO undone*" t)
   (org-show-todo-tree nil) ; mimics interactive usage
   (org-remove-occur-highlights)
-)
+  )
 (require 'ox-md)
 
 (setq! speedbar-update-flag 't)
 (setq! erc-modules '('(erc-modules
-   '(autojoin bufbar button completion fill imenu irccontrols list match menu
-     move-to-prompt netsplit networks nickbar nicks notifications notify
-     readonly ring spelling stamp track))))
+                       '(autojoin bufbar button completion fill imenu irccontrols list match menu
+                         move-to-prompt netsplit networks nickbar nicks notifications notify
+                         readonly ring spelling stamp track))))
 
-(setq indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1))
+
+(defun my/treesit-parser-for-lang-mode (lang-mode-symbol)
+  (when (and (treesit-available-p)
+             (treesit-language-available-p lang-mode-symbol))
+    (treesit-parser-create lang-mode-symbol)))
 
 (use-package! indent-bars
- :hook ((tree-sitter-hl-mode) . indent-bars-mode) ; or whichever modes you prefer
-  :custom
+  :hook ((tree-sitter-hl-mode) . indent-bars-mode) ; or whichever modes you prefer
+  :config
   (setopt
-		indent-bars-color '(highlight :face-bg t :blend 0.8)
-		indent-bars-pattern "."
-		indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 0.8)
-		indent-bars-highlight-current-depth '(:blend 1.0 :width 0.4 :pad 0.1 :pattern ".*.*.*.*.*.*.*.*" :zigzag 0.1)
-		indent-bars-pad-frac 0.3
-		indent-bars-ts-highlight-current-depth '(no-inherit) ; equivalent to nil
-		indent-bars-ts-color-by-depth '(no-inherit)
-  ;;       	indent-bars-ts-color '(inherit fringe :face-bg t :blend 0.2))
-  ;; (indent-bars-no-descend-lists t) ; no extra bars in continued func arg lists
-  ;; (indent-bars-treesit-support t)
-  ;; (indent-bars-treesit-ignore-blank-lines-types '("module"))
-  ;; ;; Add other languages as needed
-  ;; (indent-bars-treesit-scope '((python function_definition class_definition for_statement
-  ;;         if_statement with_statement while_statement)))
-  ;; ;; Note: wrap may not be needed if no-descend-list is enough
-  ;; ;;(indent-bars-treesit-wrap '((python argument_list parameters ; for python, as an example
-  ;; ;;				      list list_comprehension
-  ;; ;;				      dictionary dictionary_comprehension
-  ;; ;;				      parenthesized_expression subscript)))
-))
+   indent-bars-color '(highlight :face-bg t :blend 0.7)
+   ;; indent-bars-pattern "."
+   indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 0.8)
+   indent-bars-pattern " . . . . ." ; play with the number of dots for your usual font size
+   indent-bars-width-frac 0.25
+   indent-bars-pad-frac 0.1
+   indent-bars-highlight-current-depth '(:blend 1.0 :width 0.4 :pad 0.1 :pattern ".")
+   ;; indent-bars-pad-frac 0.3
+   indent-bars-ts-highlight-current-depth '(unspecified) ; equivalent to nil
+   indent-bars-ts-color-by-depth '(unspecified)
+   indent-bars-ts-color '(inherit unspecified :blend 0.05))
+  :custom
+  (indent-bars-no-descend-lists t) ; no extra bars in continued func arg lists
+  (indent-bars-treesit-support t)
+  (indent-bars-treesit-ignore-blank-lines-types '("module"))
+  ;; Add other languages as needed
+  (indent-bars-treesit-scope '((python function_definition class_definition for_statement
+	                        if_statement with_statement while_statement)))
+  ;; Note: wrap may not be needed if no-descend-list is enough
+  (indent-bars-treesit-wrap '((python argument_list parameters ; for python, as an example
+			       list list_comprehension
+			       dictionary dictionary_comprehension
+			       parenthesized_expression subscript)))
+  (indent-bars-treesit-wrap '((c
+                               argument_list parameter_list init_declarator parenthesized_expression)))
+  (indent-bars-treesit-wrap '((yaml
+                               block_mapping_pair comment)))
+  (indent-bars-treesit-wrap '((elisp
+                               quote special_form function_definition)))
+  (indent-bars-treesit-wrap '((toml
+                               table array comment)))
+  :hook
+  ((python-ts-mode yaml-ts-mode c-ts-mode c++-ts-mode toml-ts-mode) . indent-bars-mode)
+  (emacs-lisp-mode . (lambda () (my/treesit-parser-for-lang-mode 'elisp))))
 
+;; indent-bars-ts-color '(inherit fringe :face-bg t :blend 0.2))(setq indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1)))
+
+
+(setq whitespace-line-column nil
+      whitespace-style
+      '(face indentation tabs tab-mark spaces space-mark newline newline-mark
+        trailing lines-tail)
+      whitespace-display-mappings nil
+      )
 
 (setq lsp t)
 (setq indent-bars-mode t)
@@ -495,7 +522,31 @@ function that sets `deactivate-mark' to t."
 
 (global-set-key (kbd "C-c o i") 'side-hustle-toggle)
 
+(with-eval-after-load 'lsp-mode
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("ruff" "server" "--preview"))
+                    :major-modes '(python-mode)
+                    :priority 1
+                    :add-on? t
+                    :multi-root t
+                    :server-id 'ruff-server)
+   )
+  )
 
+;; (setq! lsp-disabled-clients '(python-mode . (ruff-lsp)))
+(use-package! apheleia
+  :config
+  (setf (alist-get 'python-mode apheleia-mode-alist)
+        '(ruff-isort ruff))
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist)
+        '(ruff-isort ruff))
+  :hook
+  ((python-ts-mode yaml-ts-mode c-ts-mode c++-ts-mode toml-ts-mode) . indent-bars-mode) . (apheleia-mode))
+
+
+(solaire-global-mode +1)
+;; (with-eval-after-load 'solaire-mode
+;;   (add-to-list 'solaire-mode-themes-to-face-swap 'doom-tokyo-night))
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
   (run-with-idle-timer 15 t
