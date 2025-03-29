@@ -40,7 +40,7 @@
 (package! side-hustle)
 (package! vagrant)
 (package! vagrant-tramp)
-
+(package! color-identifiers-mode)
 (package! indent-bars)
 ;; (package! eee
 ;;   :recipe (:host github :repo "eval-exec/eee.el"

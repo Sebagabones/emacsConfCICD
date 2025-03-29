@@ -135,8 +135,10 @@
 (setq auto-save-default t
       make-backup-files t)
 ;; (setq confirm-kill-emacs nil)
-(setq doom-font (font-spec :family "CodeNewRoman Nerd Font Mono" :size 16)
-      doom-variable-pitch-font (font-spec :family "CodeNewRoman Nerd Font Mono" :size 16))
+;; (setq doom-font (font-spec :family "CodeNewRoman Nerd Font Mono" :size 16)
+;;       doom-variable-pitch-font (font-spec :family "CodeNewRoman Nerd Font Mono" :size 16))
+(setq doom-font (font-spec :family "JetBrainsMono NFM" :size 12.0)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono NFM" :size 12.0))
 (custom-set-faces!
   '(doom-dashboard-banner :inherit default)
   '(doom-dashboard-loaded :inherit default))
@@ -319,7 +321,9 @@ function that sets `deactivate-mark' to t."
   (setq lsp-ui-doc-include-signature t)
   (setq lsp-ui-doc-border (face-foreground 'default))
   (setq lsp-ui-sideline-show-code-actions t)
+  (setq lsp-ui-peek-always-show t)
   (setq lsp-ui-sideline-delay 0.05))
+
 
 (if (display-graphic-p)
     (progn
@@ -507,7 +511,8 @@ function that sets `deactivate-mark' to t."
 (setq indent-bars-mode t)
 (setq tree-sitter-mode t)
 (setq org-todo-keyword-faces
-      '(("OKAY" . (:foreground (doom-color 'blue ) :weight bold))))
+      '(("OKAY" . (:foreground (doom-color 'magenta ) :weight bold))
+      ("NO" . (:foreground (doom-color 'red ) :weight bold))))
 
 
 ;; (setq global-flycheck-mode t)
@@ -545,6 +550,38 @@ function that sets `deactivate-mark' to t."
 
 
 (solaire-global-mode +1)
+
+
+(defun my--init-nim-mode ()
+  "Local init function for `nim-mode'."
+
+  ;; Just an example, by default these functions are
+  ;; already mapped to "C-c <" and "C-c >".
+  (local-set-key (kbd "M->") 'nim-indent-shift-right)
+  (local-set-key (kbd "M-<") 'nim-indent-shift-left)
+
+  ;; Make files in the nimble folder read only by default.
+  ;; This can prevent to edit them by accident.
+  (when (string-match "/\.nimble/" (or (buffer-file-name) "")) (read-only-mode 1))
+
+  ;; If you want to experiment, you can enable the following modes by
+  ;; uncommenting their line.
+  ;; (nimsuggest-mode 1)
+  ;; Remember: Only enable either `flycheck-mode' or `flymake-mode' at the same time.
+  (flycheck-mode 1)
+  ;; (flymake-mode 1)
+
+  ;; The following modes are disabled for Nim files just for the case
+  ;; that they are enabled globally.
+  ;; Anything that is based on smie can cause problems.
+  (auto-fill-mode 0)
+  (electric-indent-local-mode 0)
+)
+
+(add-hook 'nim-mode-hook 'my--init-nim-mode)
+(add-hook 'after-init-hook 'global-color-identifiers-mode)
+(setq color-identifiers:recoloring-delay 0.5)
+(setq color-identifiers:extra-face-attributes '(:weight bold))
 ;; (with-eval-after-load 'solaire-mode
 ;;   (add-to-list 'solaire-mode-themes-to-face-swap 'doom-tokyo-night))
 ;; When idle for 15sec run the GC no matter what.

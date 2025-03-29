@@ -7,8 +7,8 @@ server "boneswebhome.lab.mahoosively.gay", user: "bones", roles: %w{app db web}#
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-
-
+branchName = %x(git branch --show-current).strip
+set :branch, branchName
 # role-based syntax
 # ==================
 
