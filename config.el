@@ -220,10 +220,10 @@
         (kill-backward-chars 1))
     ad-do-it))
 
-;; (defun acg/with-mark-active (&rest args)
-;;   "Keep mark active after command. To be used as advice AFTER any
-;; function that sets `deactivate-mark' to t."
-;;   (setq deactivate-mark nil))
+(defun acg/with-mark-active (&rest args)
+  "Keep mark active after command. To be used as advice AFTER any
+function that sets `deactivate-mark' to t."
+  (setq deactivate-mark nil))
 
 (advice-add 'comment-or-uncomment-region :after #'acg/with-mark-active)
 
