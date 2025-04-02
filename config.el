@@ -512,7 +512,7 @@ function that sets `deactivate-mark' to t."
 (setq tree-sitter-mode t)
 (setq org-todo-keyword-faces
       '(("OKAY" . (:foreground (doom-color 'magenta ) :weight bold))
-      ("NO" . (:foreground (doom-color 'red ) :weight bold))))
+        ("NO" . (:foreground (doom-color 'red ) :weight bold))))
 
 
 ;; (setq global-flycheck-mode t)
@@ -576,7 +576,7 @@ function that sets `deactivate-mark' to t."
   ;; Anything that is based on smie can cause problems.
   (auto-fill-mode 0)
   (electric-indent-local-mode 0)
-)
+  )
 
 (add-hook 'nim-mode-hook 'my--init-nim-mode)
 (add-hook 'after-init-hook 'global-color-identifiers-mode)
@@ -594,8 +594,6 @@ function that sets `deactivate-mark' to t."
           "--true-color" "always"
           "--syntax-theme" "tokyoNightNight"
           "--color-only")))
-
-
 
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
