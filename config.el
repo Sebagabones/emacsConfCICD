@@ -587,14 +587,13 @@ function that sets `deactivate-mark' to t."
 
 
 
-;; (add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
-
-;; (after! magit-delta
-;;   (setq magit-delta-delta-args
-;;         `("--max-line-distance" "0.6"
-;;           "--true-color" "always"
-;;           "--syntax-theme" "tokyonight-night"
-;;           "--color-only")))
+(add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
+(after! magit-delta
+  (setq magit-delta-delta-args
+        `("--max-line-distance" "0.6"
+          "--true-color" "always"
+          "--syntax-theme" "tokyoNightNight"
+          "--color-only")))
 
 
 
