@@ -42,6 +42,7 @@
 (package! vagrant-tramp)
 (package! color-identifiers-mode)
 (package! indent-bars)
+(package! magit-delta)
 ;; (package! eee
 ;;   :recipe (:host github :repo "eval-exec/eee.el"
 ;;            :files (:defaults "*.el" "*.sh")))

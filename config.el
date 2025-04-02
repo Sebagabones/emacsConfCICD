@@ -584,6 +584,20 @@ function that sets `deactivate-mark' to t."
 (setq color-identifiers:extra-face-attributes '(:weight bold))
 ;; (with-eval-after-load 'solaire-mode
 ;;   (add-to-list 'solaire-mode-themes-to-face-swap 'doom-tokyo-night))
+
+
+
+;; (add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
+
+;; (after! magit-delta
+;;   (setq magit-delta-delta-args
+;;         `("--max-line-distance" "0.6"
+;;           "--true-color" ,(if xterm-color--support-truecolor "always" "never")
+;;           "--syntax-theme" "tokyonight-night"
+;;           "--color-only")))
+
+
+
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
   (run-with-idle-timer 15 t
