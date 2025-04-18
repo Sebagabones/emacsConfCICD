@@ -321,6 +321,8 @@ function that sets `deactivate-mark' to t."
   (setq lsp-ui-doc-include-signature t)
   (setq lsp-ui-doc-border (face-foreground 'default))
   (setq lsp-ui-sideline-show-code-actions t)
+  (setq lsp-ui-sideline-show-hover t)
+  (setq lsp-ui-sideline-show-symbol t)
   (setq lsp-ui-peek-always-show t)
   (setq lsp-ui-sideline-delay 0.05))
 
@@ -539,14 +541,29 @@ function that sets `deactivate-mark' to t."
   )
 
 ;; (setq! lsp-disabled-clients '(python-mode . (ruff-lsp)))
-(use-package! apheleia
+;; (after! apheleia
+;;   :config
+;;   (setf (alist-get 'python-mode apheleia-mode-alist)
+;;         '(ruff-isort ruff))
+;;   (setf (alist-get 'python-ts-mode apheleia-mode-alist)
+;;         '(ruff-isort ruff)))
+;; ;; Configure Apheleia to use Uncrustify for C/C++
+(after! apheleia
   :config
+  (setf (alist-get 'uncrustify apheleia-formatters)
+        '("uncrustify" "-l" "C" "-c" "/home/bones/.uncrustify.cfg" "--no-backup"))
+
+  (setf (alist-get 'c-mode apheleia-mode-alist) '(uncrustify))
+  (setf (alist-get 'c++-mode apheleia-mode-alist) '(uncrustify))
+  (setf (alist-get 'c-ts-mode apheleia-mode-alist) '(uncrustify))
+  (setf (alist-get 'c++-ts-mode apheleia-mode-alist) '(uncrustify))
   (setf (alist-get 'python-mode apheleia-mode-alist)
         '(ruff-isort ruff))
   (setf (alist-get 'python-ts-mode apheleia-mode-alist)
-        '(ruff-isort ruff))
-  :hook
-  ((python-ts-mode yaml-ts-mode c-ts-mode c++-ts-mode toml-ts-mode) . indent-bars-mode) . (apheleia-mode))
+        '(ruff-isort ruff)))
+(apheleia-global-mode +1)
+;; :hook
+;; ((python-ts-mode yaml-ts-mode c-ts-mode c++-ts-mode toml-ts-mode) . indent-bars-mode))
 
 
 (solaire-global-mode +1)
@@ -585,7 +602,10 @@ function that sets `deactivate-mark' to t."
 ;; (with-eval-after-load 'solaire-mode
 ;;   (add-to-list 'solaire-mode-themes-to-face-swap 'doom-tokyo-night))
 
-
+;; gcc -std=c11 -pedantic -Wall -Wextra -Wshadow -Wconversion -funsigned-char -fsanitize=undefined,address,leak -fno-sanitize-recover=signed-integer-overflow -fno-omit-frame-pointer -g -O
+(after! ccls
+  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t) :clang (:extraArgs ["-std=c11" "-pedantic" "-Wall" "-Wextra" "-Wshadow" "-Wconversion" "-funsigned-char" "-fsanitize=undefined,address,leak" "-fno-sanitize-recover=signed-integer-overflow" "-fno-omit-frame-pointer" "-g" "-O"])))
+  (set-lsp-priority! 'ccls 1))
 
 (add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
 (after! magit-delta
@@ -595,6 +615,19 @@ function that sets `deactivate-mark' to t."
           "--syntax-theme" "tokyoNightNight"
           "--color-only")))
 
+;; (require 'uncrustify-mode)
+;; (add-hook 'c-mode-common-hook
+;;           #'(lambda ()
+;;               (uncrustify-mode 1)
+;;               (apheleia-mode 0)))
+
+(setq lsp-prefer-flymake nil)
+(with-eval-after-load 'flycheck
+  (require 'flycheck-flawfinder)
+  (flycheck-flawfinder-setup)
+  ;; chain after cppcheck since this is the last checker in the upstream
+  ;; configuration
+  (flycheck-add-next-checker 'c/c++-cppcheck '(warning . flawfinder)))
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
   (run-with-idle-timer 15 t

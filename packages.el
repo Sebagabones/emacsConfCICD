@@ -11,9 +11,9 @@
 (package! corfu-terminal)
 (package! nerd-icons-corfu)
 
- (package! corfu-doc-terminal
-   :recipe   (:type git
-   :repo "https://codeberg.org/akib/emacs-corfu-doc-terminal.git"))
+(package! corfu-doc-terminal
+  :recipe   (:type git
+             :repo "https://codeberg.org/akib/emacs-corfu-doc-terminal.git"))
 (package! ace-jump-mode)
 (package! rainbow-mode)
 (package! avy)
@@ -23,9 +23,9 @@
 (package! lsp-pyright)
 (package! catppuccin-theme)
 
-  ;; package.el
-  (package! tera-mode
-    :recipe (:host github :repo "svavs/tera-mode"))
+;; package.el
+(package! tera-mode
+  :recipe (:host github :repo "svavs/tera-mode"))
 
 (package! eee
   :recipe (:host github :repo "Sebagabones/eee.el"
@@ -43,6 +43,13 @@
 (package! color-identifiers-mode)
 (package! indent-bars)
 (package! magit-delta)
+(package! ccls)
+(package! consult-tramp
+  :recipe (:host github :repo"Ladicle/consult-tramp"))
+(package! uncrustify-mode
+  :recipe (:host github :repo"koko1000ban/emacs-uncrustify-mode"))
+
+(package! flycheck-flawfinder)
 ;; (package! eee
 ;;   :recipe (:host github :repo "eval-exec/eee.el"
 ;;            :files (:defaults "*.el" "*.sh")))
