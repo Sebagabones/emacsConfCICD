@@ -11,9 +11,7 @@
 (package! corfu-terminal)
 (package! nerd-icons-corfu)
 
-(package! corfu-doc-terminal
-  :recipe   (:type git
-             :repo "https://codeberg.org/akib/emacs-corfu-doc-terminal.git"))
+
 (package! ace-jump-mode)
 (package! rainbow-mode)
 (package! avy)
@@ -22,18 +20,6 @@
 (package! comment-dwim-2)
 (package! lsp-pyright)
 (package! catppuccin-theme)
-
-;; package.el
-(package! tera-mode
-  :recipe (:host github :repo "svavs/tera-mode"))
-
-(package! eee
-  :recipe (:host github :repo "Sebagabones/eee.el"
-           :files (:defaults "*.el" "*.sh")))
-
-(package! astro-ts-mode
-  :recipe (:host github :repo"Sorixelle/astro-ts-mode"))
-
 (package! treesit-auto)
 (package! apheleia)
 (package! windsize)
@@ -44,20 +30,25 @@
 (package! indent-bars)
 (package! magit-delta)
 (package! ccls)
+(package! flycheck-flawfinder)
+
+(package! tera-mode
+  :recipe (:host github :repo "svavs/tera-mode"))
+(package! eee
+  :recipe (:host github :repo "Sebagabones/eee.el"
+           :files (:defaults "*.el" "*.sh")))
+(package! astro-ts-mode
+  :recipe (:host github :repo"Sorixelle/astro-ts-mode"))
 (package! consult-tramp
   :recipe (:host github :repo"Ladicle/consult-tramp"))
 (package! uncrustify-mode
   :recipe (:host github :repo"koko1000ban/emacs-uncrustify-mode"))
-
-(package! flycheck-flawfinder)
-;; (package! eee
-;;   :recipe (:host github :repo "eval-exec/eee.el"
-;;            :files (:defaults "*.el" "*.sh")))
-;; (package! eee
-;;   :recipe (:local-repo "/home/bones/Storage/MyProjects/eee.el/"))
-
-
-
+(package! corfu-doc-terminal            ;note emacs 31 should make this redundant yippee - also note I don't think I even use corfu anymore
+  :recipe   (:type git
+             :repo "https://codeberg.org/akib/emacs-corfu-doc-terminal.git"))
+(package! simple-comment-markup
+  :recipe (:type git
+           :repo "https://code.tecosaur.net/tec/simple-comment-markup.git"))
 
 ;; (package! lsp-ui)
 ;; To install a package directly from a remote git repo, you must specify a

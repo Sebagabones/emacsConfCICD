@@ -258,7 +258,7 @@ function that sets `deactivate-mark' to t."
   "Emacs quick move minor mode"
   t)
 ;; you can select the key you prefer to
-(map! "C-c C-t" #'treemacs-select-window)
+(map! "C-c o P" #'treemacs-select-window)
 ;; config.el
 ;; (require 'tera-mode)
 ;; (treemacs-no-png-images t)
@@ -272,7 +272,8 @@ function that sets `deactivate-mark' to t."
 
 
 ;; (global-set-key (kbd "C-x C-t") 'ivy-switch-buffer-other-window)
-(global-set-key (kbd "C-<tab>") '+vertico/switch-workspace-buffer)
+;; (global-set-key (kbd "C-<tab>") '+vertico/switch-workspace-buffer)
+;; switched to centaur tabs ace jump
 ;; (defun my-ivy-keybinding ()
 ;;   "Rebind key only in Ivy buffers."
 ;;   (define-key vertico-minibuffer-map (kbd "C-<tab>") 'vertico-next)
@@ -319,12 +320,19 @@ function that sets `deactivate-mark' to t."
   (setq lsp-ui-doc-header t)
   (setq lsp-ui-imenu t)
   (setq lsp-ui-doc-include-signature t)
-  (setq lsp-ui-doc-border (face-foreground 'default))
+  (setq lsp-ui-doc-enable t)
+  (setq lsp-ui-doc-show-with-cursor t)
+  (setq lsp-ui-doc-position 'top)
+  (setq lsp-ui-doc-side 'right)
+  (setq lsp-ui-doc-delay 0.5)
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-show-hover t)
   (setq lsp-ui-sideline-show-symbol t)
   (setq lsp-ui-peek-always-show t)
-  (setq lsp-ui-sideline-delay 0.05))
+  (setq lsp-ui-sideline-delay 0.05)
+  (map! "C-c c l f" #'lsp-ui-doc-focus-frame)
+  (map! "C-c c l u" #'lsp-ui-doc-unfocus-frame))
+
 
 
 (if (display-graphic-p)
@@ -464,6 +472,7 @@ function that sets `deactivate-mark' to t."
   :hook ((tree-sitter-hl-mode) . indent-bars-mode) ; or whichever modes you prefer
   :config
   (setopt
+   indent-bars-starting-column `nil
    indent-bars-color '(highlight :face-bg t :blend 0.7)
    ;; indent-bars-pattern "."
    indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 0.8)
@@ -511,7 +520,9 @@ function that sets `deactivate-mark' to t."
 
 (setq lsp t)
 (setq indent-bars-mode t)
-(setq tree-sitter-mode t)
+
+(setq global-tree-sitter-mode t)
+
 (setq org-todo-keyword-faces
       '(("OKAY" . (:foreground (doom-color 'magenta ) :weight bold))
         ("NO" . (:foreground (doom-color 'red ) :weight bold))))
@@ -553,9 +564,10 @@ function that sets `deactivate-mark' to t."
   (setf (alist-get 'uncrustify apheleia-formatters)
         '("uncrustify" "-l" "C" "-c" "/home/bones/.uncrustify.cfg" "--no-backup"))
 
-  (setf (alist-get 'c-mode apheleia-mode-alist) '(uncrustify))
+  (setf (alist-get 'cpp-mode apheleia-mode-alist) '(uncrustify))
   (setf (alist-get 'c++-mode apheleia-mode-alist) '(uncrustify))
   (setf (alist-get 'c-ts-mode apheleia-mode-alist) '(uncrustify))
+  (setf (alist-get 'c-mode apheleia-mode-alist) '(uncrustify))
   (setf (alist-get 'c++-ts-mode apheleia-mode-alist) '(uncrustify))
   (setf (alist-get 'python-mode apheleia-mode-alist)
         '(ruff-isort ruff))
@@ -565,6 +577,7 @@ function that sets `deactivate-mark' to t."
 ;; :hook
 ;; ((python-ts-mode yaml-ts-mode c-ts-mode c++-ts-mode toml-ts-mode) . indent-bars-mode))
 
+(setq apheleia-log-debug-info t)
 
 (solaire-global-mode +1)
 
@@ -596,13 +609,15 @@ function that sets `deactivate-mark' to t."
   )
 
 (add-hook 'nim-mode-hook 'my--init-nim-mode)
+
+
 (add-hook 'after-init-hook 'global-color-identifiers-mode)
 (setq color-identifiers:recoloring-delay 0.5)
 (setq color-identifiers:extra-face-attributes '(:weight bold))
+
 ;; (with-eval-after-load 'solaire-mode
 ;;   (add-to-list 'solaire-mode-themes-to-face-swap 'doom-tokyo-night))
 
-;; gcc -std=c11 -pedantic -Wall -Wextra -Wshadow -Wconversion -funsigned-char -fsanitize=undefined,address,leak -fno-sanitize-recover=signed-integer-overflow -fno-omit-frame-pointer -g -O
 (after! ccls
   (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t) :clang (:extraArgs ["-std=c11" "-pedantic" "-Wall" "-Wextra" "-Wshadow" "-Wconversion" "-funsigned-char" "-fsanitize=undefined,address,leak" "-fno-sanitize-recover=signed-integer-overflow" "-fno-omit-frame-pointer" "-g" "-O"])))
   (set-lsp-priority! 'ccls 1))
@@ -615,11 +630,72 @@ function that sets `deactivate-mark' to t."
           "--syntax-theme" "tokyoNightNight"
           "--color-only")))
 
+
+(defun run-pre-commit ()
+  "Run `pre-commit`, collect output and, in case of errors, raise a
+buffer with the collected output."
+  (let ((pre-commit-buffer (get-buffer-create "*pre-commit*")))
+    ;; TODO: maybe set default-directory?
+    (if (not (zerop (call-process "pre-commit" nil pre-commit-buffer nil "run" "--color" "always")))
+        (let ((display-buffer-alist '((".*" display-buffer-below-selected))))
+          (with-current-buffer pre-commit-buffer
+            (ansi-color-apply-on-region (point-min) (point-max)))
+          (display-buffer pre-commit-buffer )))))
+
+(add-hook 'magit-pre-start-git-hook #'run-pre-commit)
+
 ;; (require 'uncrustify-mode)
 ;; (add-hook 'c-mode-common-hook
 ;;           #'(lambda ()
 ;;               (uncrustify-mode 1)
 ;;               (apheleia-mode 0)))
+;; Install doxymacs if you haven't
+(use-package doxymacs
+  :ensure t
+  :config
+  (add-hook 'c-mode-common-hook 'doxymacs-mode)
+  (defun my-doxymacs-font-lock-hook ()
+    (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+        (doxymacs-font-lock)))
+  (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook))
+(setq doxymacs-doxygen-style "JavaDoc")
+(setq doxymacs-command-character "@")
+(setq doxymacs-use-external-xml-parser t)
+
+
+
+(after! centaur-tabs
+  :config
+  (centaur-tabs-group-by-projectile-project)
+  (setq! centaur-tabs-enable-key-bindings t
+         centaur-tabs-adjust-buffer-order t
+         centaur-tabs-adjust-buffer-order 'left
+         centaur-tabs-set-bar 'over
+         centaur-tabs-icon-type 'nerd-icons
+         centaur-tabs-modified-marker "<>"
+         centaur-tabs-set-modified-marker t
+         centaur-tabs-ace-jump-keys '(?a ?s ?d ?f ?h ?j ?k ?k ?l)))
+;; for some reason centaur-tabs-set-modified-marker t didnt work, so time to add bindings manually - i am going to use C-c C-t as a prefix instead of C-c t
+(map! "C-c C-t <left>"  #'centaur-tabs-backward)
+(map! "C-c C-t <right>" #'centaur-tabs-forward)
+(map! "C-c C-t <up>"    #'centaur-tabs-backward-group)
+(map! "C-c C-t <down>"  #'centaur-tabs-forward-group)
+(map! "C-c C-t f10"   #'centaur-tabs-local-mode)
+(map! "C-c C-t C-5"     #'centaur-tabs-extract-window-to-new-frame)
+(map! "C-c C-t a"   #'centaur-tabs-ace-jump)
+(map! "C-c C-t s"   #'centaur-tabs-counsel-switch-group)
+(map! "C-c C-t p"   #'centaur-tabs-group-by-projectile-project)
+(map! "C-c C-t g"   #'centaur-tabs-group-buffer-groups)
+(map! "C-c C-t k"   #'centaur-tabs-kill-all-buffers-in-current-group)
+(map! "C-c C-t o"   #'centaur-tabs-kill-other-buffers-in-current-group)
+(map! "C-c C-t d"   #'centaur-tabs-open-directory-in-external-application)
+(map! "C-c C-t a"   #'centaur-tabs-ace-jump)
+(map! "C-<tab>" #'centaur-tabs-ace-jump)
+
+(use-package! simple-comment-markup
+  :hook (prog-mode . simple-comment-markup-mode)
+  :config
+  (setq simple-comment-markup-set '(org markdown-code)))
 
 (setq lsp-prefer-flymake nil)
 (with-eval-after-load 'flycheck
