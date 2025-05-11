@@ -481,8 +481,8 @@ function that sets `deactivate-mark' to t."
    indent-bars-pad-frac 0.1
    indent-bars-highlight-current-depth '(:blend 1.0 :width 0.4 :pad 0.1 :pattern ".")
    ;; indent-bars-pad-frac 0.3
-   indent-bars-ts-highlight-current-depth '(unspecified) ; equivalent to nil
-   indent-bars-ts-color-by-depth '(unspecified)
+   indent-bars-ts-highlight-current-depth '(inherit unspecified)
+   indent-bars-ts-color-by-depth '(inherit unspecified)
    indent-bars-ts-color '(inherit unspecified :blend 0.05))
   :custom
   (indent-bars-no-descend-lists t) ; no extra bars in continued func arg lists
@@ -622,27 +622,78 @@ function that sets `deactivate-mark' to t."
   (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t) :clang (:extraArgs ["-std=c11" "-pedantic" "-Wall" "-Wextra" "-Wshadow" "-Wconversion" "-funsigned-char" "-fsanitize=undefined,address,leak" "-fno-sanitize-recover=signed-integer-overflow" "-fno-omit-frame-pointer" "-g" "-O"])))
   (set-lsp-priority! 'ccls 1))
 
-(add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
-(after! magit-delta
-  (setq magit-delta-delta-args
-        `("--max-line-distance" "0.6"
-          "--true-color" "always"
-          "--syntax-theme" "tokyoNightNight"
-          "--color-only")))
+;; (add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
+;; (after! magit-delta
+;;   (setq magit-delta-delta-args
+;;         `("--max-line-distance" "0.6"
+;;           "--true-color" "always"
+;;           "--syntax-theme" "tokyoNightNight"
+;;           "--color-only")))
+(after! magit
+  (setq magit-diff-refine-hunk 't))
+
+(require 'project)
+
+;; (defun run-pre-commit ()
+;;   "Run `pre-commit`, collect output and, in case of errors, raise a
+;; buffer with the collected output. Only runs if .pre-commit-config.yaml exists."
+;;   (let* ((git-root-dir (magit-toplevel))
+;;          (pre-commit-config-file (and git-root-dir
+;;                                       (expand-file-name ".pre-commit-config.yaml" git-root-dir))))
+;;     (when (and pre-commit-config-file (file-exists-p pre-commit-config-file))
+;;       (let ((pre-commit-buffer (get-buffer-create "*pre-commit*")))
+;;         (let ((default-directory git-root-dir))
+;;           (if (not (zerop (call-process "pre-commit" nil pre-commit-buffer nil "run" "--color" "always")))
+;;               (let ((display-buffer-alist '((".*" display-buffer-below-selected))))
+;;                 (with-current-buffer pre-commit-buffer
+;;                   (ansi-color-apply-on-region (point-min) (point-max)))
+;;                 (display-buffer pre-commit-buffer))))))))
+
+;; (add-hook 'magit-pre-start-git-hook #'run-pre-commit)
+
+(defun my/magit-pre-commit-wrapper (orig-fn &rest args)
+  "Run `pre-commit run`, and only proceed with `magit-commit-create` if it passes."
+  (let* ((git-root-dir (magit-toplevel))
+         (pre-commit-config-file
+          (and git-root-dir (expand-file-name ".pre-commit-config.yaml" git-root-dir)))
+         (default-directory git-root-dir))
+    (if (and pre-commit-config-file (file-exists-p pre-commit-config-file))
+        (with-temp-buffer
+          (let ((exit-code (call-process "pre-commit" nil t nil "run" "--color" "always")))
+            ;; Stage modified files
+            (let ((modified-files
+                   (split-string
+                    (with-output-to-string
+                      (call-process "git" nil t nil "diff" "--name-only"))
+                    "\n" t)))
+              (dolist (file modified-files)
+                (call-process "git" nil nil nil "add" file)))
+            ;; On failure, show popup and abort commit
+            (if (zerop exit-code)
+                (apply orig-fn args) ;; proceed with commit
+              (ansi-color-apply-on-region (point-min) (point-max))
+              (let ((buf (get-buffer-create "*pre-commit*")))
+                (copy-to-buffer buf (point-min) (point-max))
+                (with-current-buffer buf
+                  (let ((map (make-sparse-keymap)))
+                    (define-key map (kbd "C-g")
+                                (lambda ()
+                                  (interactive)
+                                  (quit-window t)))
+                    (use-local-map map)))
+                (pop-to-buffer buf
+                               '(display-buffer-in-side-window
+                                 (side . bottom)
+                                 (window-height . 0.3)))
+                (message "pre-commit failed, aborting commit.")))))
+      ;; no config, proceed
+      (apply orig-fn args)))
+  (magit-refresh-all))
+
+(advice-add 'magit-commit-create :around #'my/magit-pre-commit-wrapper)
 
 
-(defun run-pre-commit ()
-  "Run `pre-commit`, collect output and, in case of errors, raise a
-buffer with the collected output."
-  (let ((pre-commit-buffer (get-buffer-create "*pre-commit*")))
-    ;; TODO: maybe set default-directory?
-    (if (not (zerop (call-process "pre-commit" nil pre-commit-buffer nil "run" "--color" "always")))
-        (let ((display-buffer-alist '((".*" display-buffer-below-selected))))
-          (with-current-buffer pre-commit-buffer
-            (ansi-color-apply-on-region (point-min) (point-max)))
-          (display-buffer pre-commit-buffer )))))
 
-(add-hook 'magit-pre-start-git-hook #'run-pre-commit)
 
 ;; (require 'uncrustify-mode)
 ;; (add-hook 'c-mode-common-hook
@@ -651,7 +702,6 @@ buffer with the collected output."
 ;;               (apheleia-mode 0)))
 ;; Install doxymacs if you haven't
 (use-package doxymacs
-  :ensure t
   :config
   (add-hook 'c-mode-common-hook 'doxymacs-mode)
   (defun my-doxymacs-font-lock-hook ()
@@ -674,7 +724,7 @@ buffer with the collected output."
          centaur-tabs-icon-type 'nerd-icons
          centaur-tabs-modified-marker "<>"
          centaur-tabs-set-modified-marker t
-         centaur-tabs-ace-jump-keys '(?a ?s ?d ?f ?h ?j ?k ?k ?l)))
+         centaur-tabs-ace-jump-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?k ?l)))
 ;; for some reason centaur-tabs-set-modified-marker t didnt work, so time to add bindings manually - i am going to use C-c C-t as a prefix instead of C-c t
 (map! "C-c C-t <left>"  #'centaur-tabs-backward)
 (map! "C-c C-t <right>" #'centaur-tabs-forward)
@@ -692,6 +742,8 @@ buffer with the collected output."
 (map! "C-c C-t a"   #'centaur-tabs-ace-jump)
 (map! "C-<tab>" #'centaur-tabs-ace-jump)
 
+
+
 (use-package! simple-comment-markup
   :hook (prog-mode . simple-comment-markup-mode)
   :config
@@ -701,9 +753,8 @@ buffer with the collected output."
 (with-eval-after-load 'flycheck
   (require 'flycheck-flawfinder)
   (flycheck-flawfinder-setup)
-  ;; chain after cppcheck since this is the last checker in the upstream
-  ;; configuration
   (flycheck-add-next-checker 'c/c++-cppcheck '(warning . flawfinder)))
+
 ;; When idle for 15sec run the GC no matter what.
 (defvar k-gc-timer
   (run-with-idle-timer 15 t
